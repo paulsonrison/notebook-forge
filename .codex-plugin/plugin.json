@@ -1,0 +1,9 @@
+{
+  "name": "notebook-forge",
+  "version": "0.1.0",
+  "description": "Create notebook-style study PDFs from source material or topics.",
+  "author": { "name": "paulsonrison", "url": "https://github.com/paulsonrison" },
+  "repository": "https://github.com/paulsonrison/notebook-forge",
+  "license": "MIT",
+  "skills": "./skills/"
+}

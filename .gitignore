@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+.devdeps/
+.test-tmp/
+.scratch/
+build/
+dist/
+*.egg-info/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,5 @@
+-r requirements.txt
+pypdf>=5,<7
+Pillow>=10,<13
+PyYAML>=6,<7
+jsonschema>=4.23,<5

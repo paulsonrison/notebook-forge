@@ -1,0 +1,27 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "notebook-forge",
+  "version": "0.1.0",
+  "description": "Turn topics, documents and source material into searchable notebook-style learning PDFs.",
+  "author": { "name": "paulsonrison", "url": "https://github.com/paulsonrison" },
+  "homepage": "https://github.com/paulsonrison/notebook-forge",
+  "repository": "https://github.com/paulsonrison/notebook-forge",
+  "license": "MIT",
+  "keywords": ["agent-skill", "pdf", "study-notes", "notebook", "cheat-sheet"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Notebook Forge",
+        "shortDescription": "Create colourful notebook-style learning PDFs",
+        "longDescription": "Create searchable study notes and cheat sheets from topics, data or documents. Confirm a theme and choose dedicated topic pages, grouped topics or compact revision sheets.",
+        "developerName": "paulsonrison",
+        "category": "Productivity",
+        "capabilities": ["Interactive", "Read", "Write"],
+        "websiteURL": "https://github.com/paulsonrison/notebook-forge",
+        "supportURL": "https://github.com/paulsonrison/notebook-forge/issues",
+        "composerIcon": "./assets/icon.svg",
+        "defaultPrompt": ["Turn my source material into a notebook-style PDF.", "Create study notes from a topic; ask me about the theme and page depth."]
+      }
+    }
+  }
+}

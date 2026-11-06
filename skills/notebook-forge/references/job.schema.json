@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Notebook Forge job",
+  "type": "object",
+  "required": ["title", "theme", "layout", "sources", "topics", "pages"],
+  "additionalProperties": false,
+  "properties": {
+    "title": { "$ref": "#/$defs/text" },
+    "subtitle": { "$ref": "#/$defs/text" },
+    "author": { "$ref": "#/$defs/text" },
+    "theme": {
+      "type": "object",
+      "required": ["name", "confirmed"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "enum": ["notebook", "plain", "custom"] },
+        "confirmed": { "const": true },
+        "palette": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": false,
+          "properties": {
+            "paper": { "$ref": "#/$defs/colour" },
+            "ink": { "$ref": "#/$defs/colour" },
+            "rule": { "$ref": "#/$defs/colour" },
+            "margin": { "$ref": "#/$defs/colour" },
+            "highlight": { "$ref": "#/$defs/colour" },
+            "pink": { "$ref": "#/$defs/colour" },
+            "mint": { "$ref": "#/$defs/colour" },
+            "code": { "$ref": "#/$defs/colour" },
+            "practice": { "$ref": "#/$defs/colour" }
+          }
+        }
+      },
+      "allOf": [{
+        "if": { "properties": { "name": { "const": "custom" } } },
+        "then": { "required": ["palette"] }
+      }]
+    },
+    "layout": {
+      "type": "object",
+      "required": ["mode", "confirmed"],
+      "additionalProperties": false,
+      "properties": {
+        "mode": { "enum": ["subtopic-pages", "topic-pages", "compact", "custom"] },
+        "confirmed": { "const": true },
+        "instructions": { "$ref": "#/$defs/text" }
+      },
+      "allOf": [{
+        "if": { "properties": { "mode": { "const": "custom" } } },
+        "then": { "required": ["instructions"] }
+      }]
+    },
+    "sources": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "required": ["kind", "value"],
+        "additionalProperties": false,
+        "properties": {
+          "kind": { "enum": ["topic", "text", "file", "url"] },
+          "value": { "$ref": "#/$defs/text" },
+          "title": { "$ref": "#/$defs/text" }
+        }
+      }
+    },
+    "topics": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "required": ["id", "title"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "#/$defs/text" },
+          "title": { "$ref": "#/$defs/text" },
+          "parent": { "$ref": "#/$defs/text" }
+        }
+      }
+    },
+    "pages": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "required": ["title", "covers", "blocks"],
+        "additionalProperties": false,
+        "properties": {
+          "title": { "$ref": "#/$defs/text" },
+          "covers": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/text" } },
+          "blocks": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/block" } }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "text": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "colour": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+    "block": {
+      "type": "object", "required": ["type", "label"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "enum": ["paragraph", "bullets", "code", "callout", "practice"] },
+        "label": { "$ref": "#/$defs/text" },
+        "text": { "$ref": "#/$defs/text" },
+        "items": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/text" } }
+      },
+      "allOf": [{
+        "if": { "properties": { "type": { "const": "bullets" } } },
+        "then": { "required": ["items"] },
+        "else": { "required": ["text"] }
+      }]
+    }
+  }
+}

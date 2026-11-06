@@ -1,0 +1,14 @@
+{
+  "name": "notebook-forge",
+  "owner": { "name": "paulsonrison" },
+  "metadata": {
+    "description": "Notebook-style learning PDFs for AI agents",
+    "homepage": "https://github.com/paulsonrison/notebook-forge"
+  },
+  "plugins": [{
+    "name": "notebook-forge",
+    "source": "./",
+    "description": "Searchable notebook PDFs with theme and page-depth choices.",
+    "version": "0.1.0"
+  }]
+}

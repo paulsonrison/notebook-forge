@@ -1,0 +1,6 @@
+interface:
+  display_name: "Notebook Forge"
+  short_description: "Turn topics and sources into notebook-style PDFs"
+  default_prompt: "Use $notebook-forge to turn my source material into a study notebook; ask me to confirm the theme and page structure first."
+policy:
+  allow_implicit_invocation: true

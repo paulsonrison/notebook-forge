@@ -1,0 +1,75 @@
+{
+  "title": "Learn, practise, remember",
+  "subtitle": "A Notebook Forge demonstration",
+  "theme": { "name": "notebook", "confirmed": true },
+  "layout": { "mode": "subtopic-pages", "confirmed": true },
+  "sources": [{
+    "kind": "text",
+    "value": "Original demonstration content: turn a learning goal into a small cycle of explanation, recall, feedback and scheduled practice."
+  }],
+  "topics": [
+    { "id": "learning", "title": "A useful learning cycle" },
+    { "id": "recall", "title": "Active recall", "parent": "learning" },
+    { "id": "questions", "title": "Write a recall question", "parent": "recall" },
+    { "id": "feedback", "title": "Use feedback", "parent": "learning" },
+    { "id": "plan", "title": "Plan the next session", "parent": "learning" }
+  ],
+  "pages": [
+    {
+      "title": "A useful learning cycle",
+      "covers": ["learning"],
+      "blocks": [
+        { "type": "paragraph", "label": "The idea", "text": "Choose one thing you want to understand. Read a short explanation, close the source, and explain the idea in your own words. Use feedback to decide what to practise next." },
+        { "type": "bullets", "label": "A small, repeatable routine", "items": ["Pick a narrow goal: explain a concept or complete a task.", "Try to recall or apply it before looking at the answer.", "Check your explanation and correct one specific gap.", "Return to the difficult part in a later session."] },
+        { "type": "code", "label": "The cycle", "text": "CHOOSE A GOAL\n  -> READ OR WATCH\n  -> EXPLAIN FROM MEMORY\n  -> CHECK AND CORRECT\n  -> PLAN THE NEXT PRACTICE" },
+        { "type": "callout", "label": "An illustrative example", "text": "Goal: explain how a filter changes a list. Read one example, sketch the input and output from memory, then test a new input. The result gives you a concrete explanation to check." },
+        { "type": "paragraph", "label": "Common mistake", "text": "A familiar-looking page can feel like understanding. Add a small task that reveals whether you can use the idea without looking." },
+        { "type": "practice", "label": "Your turn", "text": "Name a topic you are learning. Write one sentence describing what you should be able to explain or do at the end of a short session." }
+      ]
+    },
+    {
+      "title": "Active recall",
+      "covers": ["recall"],
+      "blocks": [
+        { "type": "paragraph", "label": "The idea", "text": "Make an attempt to retrieve the idea before checking the source. The attempt gives you something specific to compare with a reliable explanation." },
+        { "type": "bullets", "label": "Useful prompts", "items": ["Explain the concept to a beginner in three sentences.", "Draw the process and label each step.", "Predict the result of a small change.", "Give an example and a counterexample."] },
+        { "type": "callout", "label": "Worked example", "text": "After reading about SQL joins, close the notes. Sketch two tiny tables and predict an inner join result. Then check the output and explain any difference." },
+        { "type": "paragraph", "label": "Common mistake", "text": "Turning the task into copying. Put the source aside for the first attempt, then use it deliberately for feedback." },
+        { "type": "practice", "label": "Try it now", "text": "Close this page and explain the learning cycle. Reopen it, identify one missing step, and improve your explanation. You do not need to reproduce the wording exactly." }
+      ]
+    },
+    {
+      "title": "Write a recall question",
+      "covers": ["questions"],
+      "blocks": [
+        { "type": "paragraph", "label": "The idea", "text": "A useful question tests a clear piece of understanding. Make it small enough to answer, and keep a way to check whether the answer is complete." },
+        { "type": "bullets", "label": "Build the question", "items": ["Choose a concept or action, rather than an entire chapter.", "Ask for explanation, prediction or a concrete example.", "Keep the expected answer separate from the question.", "Revise questions that are ambiguous or test only wording."] },
+        { "type": "code", "label": "Question card", "text": "FRONT\nWhat changes when a list is filtered?\n\nBACK\nThe displayed items follow a condition.\nExplain the input, condition and resulting items.\nGive a tiny example and check it." },
+        { "type": "callout", "label": "A nested subtopic gets its own page", "text": "This page sits under Active recall in the topic inventory. Dedicated-page mode includes every hierarchy level, even when a subtopic has children of its own." },
+        { "type": "practice", "label": "Make one card", "text": "Write a question for your current topic. Answer it without notes, then compare with the source. If you cannot decide whether the answer is right, improve the question or its checking guide." }
+      ]
+    },
+    {
+      "title": "Use feedback",
+      "covers": ["feedback"],
+      "blocks": [
+        { "type": "paragraph", "label": "The idea", "text": "Compare your attempt with a trustworthy source or a clear expected result. Look for a specific difference that you can correct and practise." },
+        { "type": "bullets", "label": "What to inspect", "items": ["Was the main idea correct?", "Did the explanation omit a condition or exception?", "Does your example actually demonstrate the rule?", "Can you explain the correction without copying the source?"] },
+        { "type": "callout", "label": "Worked example", "text": "Your sketch says all source items appear in the filtered list. A small test shows only matching items. Correct the explanation, then try another condition to see whether you understand the change." },
+        { "type": "paragraph", "label": "Common mistake", "text": "Reading the correct answer and moving on immediately. Try the corrected explanation once more, using a different example if possible." },
+        { "type": "practice", "label": "Correction log", "text": "My original answer: ____\nThe specific gap: ____\nMy corrected explanation: ____\nA new example to check it: ____" }
+      ]
+    },
+    {
+      "title": "Plan the next session",
+      "covers": ["plan"],
+      "blocks": [
+        { "type": "paragraph", "label": "The idea", "text": "Use what you noticed in practice to choose the next small task. A useful plan says what to practise and how you will check it, rather than only naming a chapter to reread." },
+        { "type": "bullets", "label": "Choose your next step", "items": ["Keep one difficult question for another attempt.", "Revisit the topic in a later session.", "Change the example to check transfer.", "Adjust the plan to your deadline and current understanding."] },
+        { "type": "code", "label": "A practical session note", "text": "TOPIC: ______________________________\nNEXT TASK: __________________________\nWHEN: _______________________________\nHOW I WILL CHECK IT: ________________\nWHAT STILL FEELS UNCLEAR: ___________" },
+        { "type": "callout", "label": "Keep the plan realistic", "text": "There is no universal schedule in this demonstration. Choose a manageable return time, then adjust according to your recall and the time available." },
+        { "type": "practice", "label": "Before you finish", "text": "Write one task for the next session. Include the material you will need and one clear sign that the task is complete." }
+      ]
+    }
+  ]
+}
