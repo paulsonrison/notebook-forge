@@ -1,0 +1,6 @@
+interface:
+  display_name: "Case Study Writing"
+  short_description: "Write customer stories grounded in real evidence"
+  default_prompt: "Use $case-study-writing to turn my project notes into a clear customer story without inventing results or quotes."
+policy:
+  allow_implicit_invocation: true

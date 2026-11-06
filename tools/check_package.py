@@ -17,7 +17,10 @@ def check_package():
     ]
     data = [json.loads(path.read_text(encoding="utf-8")) for path in manifests]
     identity = {(d["name"], d["version"]) for d in data}
-    assert identity == {("notebook-forge", "0.1.0")}, identity
+    assert len(identity) == 1 and data[0]["name"] == "notebook-forge", identity
+    expected_skills = {"notebook-forge", "resume-optimizer", "case-study-writing"}
+    discovered = {p.name for p in (ROOT / "skills").iterdir() if p.is_dir()}
+    assert discovered == expected_skills, f"Expected {expected_skills}; found {discovered}"
     skill = ROOT / "skills/notebook-forge"
     content = (skill / "SKILL.md").read_text(encoding="utf-8")
     _, header, _ = content.split("---", 2)
@@ -33,6 +36,21 @@ def check_package():
     ui = yaml.safe_load((skill / "agents/openai.yaml").read_text(encoding="utf-8"))
     assert "$notebook-forge" in ui["interface"]["default_prompt"]
     assert 25 <= len(ui["interface"]["short_description"]) <= 64
+    for name in sorted(expected_skills):
+        package = ROOT / "skills" / name
+        text = (package / "SKILL.md").read_text(encoding="utf-8-sig")
+        frontmatter = yaml.safe_load(text.split("---", 2)[1])
+        assert frontmatter["name"] == name
+        assert 0 < len(frontmatter["description"]) <= 1024
+        for target in re.findall(r"\]\(([^)]+)\)", text):
+            if "://" not in target:
+                resolved = (package / target).resolve()
+                assert resolved.is_relative_to(package.resolve()) and resolved.is_file(), target
+        ui_data = yaml.safe_load((package / "agents/openai.yaml").read_text(encoding="utf-8"))
+        assert "$" + name in ui_data["interface"]["default_prompt"]
+        for icon in ("icon_small", "icon_large"):
+            if icon in ui_data["interface"]:
+                assert (package / ui_data["interface"][icon]).is_file()
     for path in (ROOT / ".agents/plugins/marketplace.json", ROOT / ".claude-plugin/marketplace.json"):
         marketplace = json.loads(path.read_text(encoding="utf-8"))
         entry = marketplace["plugins"][0]
@@ -49,7 +67,7 @@ def check_package():
     jsonschema.Draft202012Validator.check_schema(schema)
     example = json.loads((ROOT / "examples/learning-notebook.json").read_text(encoding="utf-8"))
     jsonschema.validate(example, schema)
-    print("Package OK: matching identities, self-contained skill, manifests, references and font license.")
+    print("Package OK: all three skills, matching identities, manifests, references and font license.")
 
 
 if __name__ == "__main__":

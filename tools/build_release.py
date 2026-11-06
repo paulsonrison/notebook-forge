@@ -1,5 +1,6 @@
 """Build a portable ZIP from an explicit allowlist; no caches or private inputs."""
 from pathlib import Path
+import json
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,7 +14,8 @@ ALLOW = [
 
 
 def build_release(destination=None):
-    destination = Path(destination or ROOT / "dist/notebook-forge-0.1.0.zip")
+    version = json.loads((ROOT / "plugin.json").read_text(encoding="utf-8"))["version"]
+    destination = Path(destination or ROOT / f"dist/notebook-forge-{version}.zip")
     destination.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(destination, "w", compression=zipfile.ZIP_DEFLATED) as archive:
         for item in ALLOW:

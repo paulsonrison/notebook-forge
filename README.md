@@ -1,8 +1,29 @@
 # Notebook Forge
 
-**Turn source material into a notebook you can actually study from.**
+**Reusable agent skills for learning notes, resumes and customer stories.**
 
-A portable AI-agent skill and plugin for colourful, searchable PDF study notes,
+## Included skills
+
+| Skill | Purpose | Invoke |
+|---|---|---|
+| [Notebook Forge](skills/notebook-forge/SKILL.md) | Searchable notebook-style PDF study material | `$notebook-forge` |
+| [Resume Optimizer](skills/resume-optimizer/SKILL.md) | Factual CV review, job tailoring and Word/PDF output when tools are available | `$resume-optimizer` |
+| [Case Study Writing](skills/case-study-writing/SKILL.md) | Evidence-based customer and portfolio stories using STAR | `$case-study-writing` |
+
+Installing the plugin bundles all three. Claude Code names them
+`/notebook-forge:notebook-forge`, `/notebook-forge:resume-optimizer` and
+`/notebook-forge:case-study-writing`. Other hosts may display their skill names.
+To install just one portable skill, copy that complete folder from `skills/`.
+
+Resume Optimizer includes its four visual themes and preserves supplied history
+and factual limits. Case Study Writing is an original standalone skill: it does
+not bundle the third-party inference.sh skill or require its CLI or accounts.
+Neither skill invents missing achievements, measurements or quotations.
+
+The notebook-specific guide follows. Its theme and page-depth questions apply
+to notebook creation, not to resume or case-study requests.
+
+A portable AI-agent skill within this plugin for colourful, searchable PDF study notes,
 cheat sheets and revision notebooks. Bring a topic, pasted notes, data, a document
 or an accessible source. Your agent authors the material; a local Python renderer
 checks the structure and produces the PDF.
@@ -122,7 +143,8 @@ Render PDFs with a local tool such as Poppler and inspect every page:
 pdftoppm -png -scale-to 1400 build/my-notebook.pdf build/page
 ```
 
-- PDF output is supported in v0.1.0; DOCX/PPTX exports are not implemented.
+- The bundled notebook renderer exports PDF. Resume Optimizer can use the host's
+  document tools for DOCX/PDF; a universal Word renderer is not bundled here.
 - The default fonts support a limited set of left-to-right glyphs. Unsupported
   glyphs fail clearly. Complex scripts need an appropriate font/shaping renderer.
 - Code is ASCII monospace. Rewrite long lines instead of reducing type size.

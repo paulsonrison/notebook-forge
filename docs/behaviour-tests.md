@@ -34,3 +34,20 @@ The test suite covers intake validation, missing sources, topic hierarchy and
 coverage, grouping, text escaping, glyph rejection, long code lines, continuation
 pages, searchable text, bookmarks and linked contents. CI exercises Linux and
 Windows. PDF images require visual review before a real notebook is delivered.
+
+## Version 0.2.0 additions
+
+Resume Optimizer is copied unchanged with its UI metadata, icon and four-theme
+reference. A forward check retained an underspecified support role, treated React
+as self-reported rather than professional evidence, and requested the missing
+role details and target job before precise tailoring.
+
+The installed third-party case-study skill's baseline depended on external
+accounts and demanded metrics and quotes absent from a sparse brief. This
+release instead supplies an original standalone STAR-based skill. A fresh-agent
+check produced a qualitative retail-dashboard draft without invented numbers,
+quotes or customer identity, respected local-only tools, and separated missing
+evidence and publication approval from the draft.
+
+All three skills pass frontmatter/reference checks. The package checker now
+requires the three expected skills and checks their UI prompts and local assets.
