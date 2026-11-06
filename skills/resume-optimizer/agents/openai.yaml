@@ -1,7 +1,0 @@
-interface:
-  display_name: "Resume Optimizer"
-  short_description: "Review and tailor factual, ATS-friendly resumes"
-  icon_small: "./assets/icon.svg"
-  icon_large: "./assets/icon.svg"
-  brand_color: "#0F766E"
-  default_prompt: "Use $resume-optimizer to review my CV and tailor it to my target job."

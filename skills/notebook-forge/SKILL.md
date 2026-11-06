@@ -4,7 +4,7 @@ description: Use when a user requests notebook-style PDFs, colourful study notes
 license: MIT
 metadata:
   author: paulsonrison
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Notebook Forge

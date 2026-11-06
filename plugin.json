@@ -1,26 +1,42 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "notebook-forge",
-  "version": "0.2.0",
-  "description": "Agent skills for notebook PDFs, factual resume optimisation and evidence-based customer case studies.",
-  "author": { "name": "paulsonrison", "url": "https://github.com/paulsonrison" },
+  "version": "0.3.0",
+  "description": "Turn topics, documents and source material into searchable notebook-style learning PDFs.",
+  "author": {
+    "name": "paulsonrison",
+    "url": "https://github.com/paulsonrison"
+  },
   "homepage": "https://github.com/paulsonrison/notebook-forge",
   "repository": "https://github.com/paulsonrison/notebook-forge",
   "license": "MIT",
-  "keywords": ["agent-skill", "pdf", "study-notes", "notebook", "cheat-sheet"],
+  "keywords": [
+    "agent-skill",
+    "pdf",
+    "study-notes",
+    "notebook",
+    "cheat-sheet"
+  ],
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "Notebook Forge",
-        "shortDescription": "Notebook PDFs, resumes and customer stories",
-        "longDescription": "Three reusable skills: notebook-style study PDFs with confirmed page depth, factual resume review and tailoring, and customer case studies grounded in real evidence.",
+        "shortDescription": "Create colourful notebook-style learning PDFs",
+        "longDescription": "Create searchable study notes and cheat sheets from topics, data or documents. Confirm a theme and choose dedicated topic pages, grouped topics or compact revision sheets.",
         "developerName": "paulsonrison",
         "category": "Productivity",
-        "capabilities": ["Interactive", "Read", "Write"],
+        "capabilities": [
+          "Interactive",
+          "Read",
+          "Write"
+        ],
         "websiteURL": "https://github.com/paulsonrison/notebook-forge",
         "supportURL": "https://github.com/paulsonrison/notebook-forge/issues",
         "composerIcon": "./assets/icon.svg",
-        "defaultPrompt": ["Turn my source material into a notebook-style PDF.", "Review and tailor my resume to a target role.", "Turn my project notes into an evidence-based customer case study."]
+        "defaultPrompt": [
+          "Turn my source material into a notebook-style PDF.",
+          "Create study notes from a topic; ask me about the theme and page depth."
+        ]
       }
     }
   }

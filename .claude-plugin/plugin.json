@@ -1,10 +1,18 @@
 {
   "name": "notebook-forge",
-  "version": "0.2.0",
-  "description": "Notebook PDFs, factual resume review and evidence-based case studies.",
-  "author": { "name": "paulsonrison", "url": "https://github.com/paulsonrison" },
+  "version": "0.3.0",
+  "description": "Create notebook-style study PDFs with confirmed themes and page depth.",
+  "author": {
+    "name": "paulsonrison",
+    "url": "https://github.com/paulsonrison"
+  },
   "homepage": "https://github.com/paulsonrison/notebook-forge",
   "repository": "https://github.com/paulsonrison/notebook-forge",
   "license": "MIT",
-  "keywords": ["pdf", "notebook", "study", "agent-skill"]
+  "keywords": [
+    "pdf",
+    "notebook",
+    "study",
+    "agent-skill"
+  ]
 }
