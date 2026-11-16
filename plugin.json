@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "notebook-forge",
-  "version": "0.3.0",
-  "description": "Turn topics, documents and source material into searchable notebook-style learning PDFs.",
+  "version": "1.0.0",
+  "description": "Create searchable study PDFs and section-specific animated notes with original local GIFs and two verification gates.",
   "author": {
     "name": "paulsonrison",
     "url": "https://github.com/paulsonrison"
@@ -21,8 +21,8 @@
     "com.openai": {
       "interface": {
         "displayName": "Notebook Forge",
-        "shortDescription": "Create colourful notebook-style learning PDFs",
-        "longDescription": "Create searchable study notes and cheat sheets from topics, data or documents. Confirm a theme and choose dedicated topic pages, grouped topics or compact revision sheets.",
+        "shortDescription": "Study notebooks with original teaching animations",
+        "longDescription": "Create searchable PDFs and playable companion HTML with original topic-specific GIFs, two verification gates, theme choices and readable ruled pages.",
         "developerName": "paulsonrison",
         "category": "Productivity",
         "capabilities": [

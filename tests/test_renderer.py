@@ -49,6 +49,60 @@ class RendererTests(unittest.TestCase):
     def test_renderer_entrypoint_exists(self):
         self.assertTrue(SCRIPT.exists(), "Portable renderer is missing")
 
+    def test_ruled_text_has_opaque_background_including_split_fragments(self):
+        module = self.require_renderer()
+        module.register_fonts()
+        data = job()
+        data["pages"][0]["blocks"][0]["text"] = "Read gyp descenders safely. " * 300
+        story = module.make_story(data, module.PALETTE, False)
+        from reportlab.platypus import Paragraph
+        paragraphs = [f for f in story if isinstance(f, Paragraph)]
+        self.assertTrue(paragraphs)
+        for para in paragraphs:
+            self.assertIsNotNone(para.style.backColor, para.getPlainText()[:50])
+            para.wrap(module.CONTENT_WIDTH, 10000)
+            for fragment in para.split(module.CONTENT_WIDTH, 100):
+                self.assertIsNotNone(fragment.style.backColor)
+
+    def test_rules_do_not_cross_rendered_text_pixels(self):
+        import sys
+        sys.path.insert(0, str(SCRIPT.parent))
+        from check_readability import check_pdf
+        module = self.require_renderer()
+        with tempfile.TemporaryDirectory(dir=ROOT / '.test-tmp') as tmp:
+            output = Path(tmp) / 'rules.pdf'
+            data = job()
+            data['pages'][0]['blocks'][0]['text'] = 'A switch forwards Ethernet frames. Read gyp descenders. ' * 40
+            module.render_notebook(data, output)
+            report = check_pdf(output)
+            self.assertGreater(report['words_checked'], 100)
+
+    def test_raster_check_detects_custom_rules_and_handles_continuations(self):
+        import sys
+        sys.path.insert(0, str(SCRIPT.parent))
+        from check_readability import check_pdf
+        from reportlab.pdfgen.canvas import Canvas
+        module = self.require_renderer()
+        with tempfile.TemporaryDirectory(dir=ROOT / '.test-tmp') as tmp:
+            path = Path(tmp) / 'negative.pdf'
+            canvas = Canvas(str(path))
+            canvas.setKeywords('NotebookForgeRule=#80CBD6;NotebookForgePaper=#FFFFFF')
+            canvas.setFont('Helvetica', 16)
+            canvas.drawString(70, 700, 'Blue line collision negative control')
+            canvas.setStrokeColorRGB(128/255, 203/255, 214/255)
+            canvas.setLineWidth(.45)
+            canvas.line(60, 705, 500, 705)
+            canvas.save()
+            with self.assertRaisesRegex(ValueError, 'Rule crosses'):
+                check_pdf(path)
+            data = job()
+            data['theme']['palette'] = {'rule': '#80CBD6'}
+            data['pages'][0]['blocks'][0]['text'] = 'Readable paragraph gyp text. ' * 400
+            data['pages'][1]['blocks'] = [{'type': 'code', 'label': 'Long code', 'text': '\n'.join(f'line_{i} = {i}' for i in range(140))}]
+            module.render_notebook(data, path)
+            report = check_pdf(path)
+            self.assertGreater(report['pages_checked'], 6)
+
     def test_confirmation_is_required_for_both_choices(self):
         module = self.require_renderer()
         for field in ("theme", "layout"):

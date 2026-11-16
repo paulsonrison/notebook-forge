@@ -52,6 +52,10 @@ Each block has `type` and a nonempty `label`.
 | `bullets` | Nonempty `items` array of nonempty strings |
 
 Text is escaped before PDF rendering; HTML-like source is never executed.
+Explanation paragraphs may also carry an optional `animation` object; read
+[the animation contract](animations.md). Use the animated bundle CLI for these
+jobs; the PDF receives a still and caption, and companion HTML plays the GIF.
+Legacy jobs and the existing PDF-only CLI remain supported.
 Split long code lines yourself. Do not add invisible line breaks or smaller type
 to force code into the width. Long blocks may split vertically across pages.
 

@@ -17,7 +17,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
     BaseDocTemplate, Flowable, Frame, PageBreak, PageTemplate,
-    Paragraph, Spacer, XPreformatted,
+    Paragraph, Spacer, XPreformatted, Image,
 )
 from reportlab.platypus.tableofcontents import TableOfContents
 
@@ -140,6 +140,9 @@ def validate_job(job):
     for field in ("author", "subtitle"):
         if field in job:
             nonempty(job[field], field)
+    if any('animation' in block for page in job['pages'] for block in page['blocks']):
+        from animations import validate_animations
+        validate_animations(job)
     return job
 
 
@@ -200,6 +203,9 @@ class SectionLabel(Flowable):
 
     def draw(self):
         c = self.canv
+        # Page rules are decorative: never let them pass through label glyphs.
+        c.setFillColor(colors.HexColor(self.palette["paper"]))
+        c.rect(0, 0, self.width, self.height, fill=1, stroke=0)
         top = self.height - 1
         c.setStrokeColor(colors.HexColor(self.palette["margin"]))
         c.setFillColor(colors.HexColor(self.palette["paper"]))
@@ -227,6 +233,7 @@ class NotebookDoc(BaseDocTemplate):
 
     def background(self, c, doc):
         p = self.palette
+        c.setKeywords('NotebookForgeRule=' + ('none' if self.plain else p['rule']) + ';NotebookForgePaper=' + p['paper'])
         c.saveState()
         c.setFillColor(colors.HexColor(p["paper"]))
         c.rect(0, 0, WIDTH, HEIGHT, fill=1, stroke=0)
@@ -260,10 +267,13 @@ class NotebookDoc(BaseDocTemplate):
             self.notify("TOCEntry", (0, escape(title), self.page, key))
 
 
-def make_story(job, palette, plain):
+def make_story(job, palette, plain, asset_root=None):
     body = ParagraphStyle(
         "Body", fontName="ForgeBody", fontSize=11, leading=15.3,
         textColor=colors.HexColor(palette["ink"]), spaceAfter=12,
+        # Flow-based text cannot share a fixed baseline grid. Mask rules behind
+        # every text area, including Paragraph's continuation fragments.
+        backColor=None if plain else colors.HexColor(palette["paper"]),
         splitLongWords=True, allowWidows=0, allowOrphans=0,
     )
     title_style = ParagraphStyle(
@@ -316,6 +326,7 @@ def make_story(job, palette, plain):
             if kind == "bullets":
                 bullet_style = ParagraphStyle(
                     "Bullet", parent=body, leftIndent=13, firstLineIndent=-10,
+                    borderPadding=(0, 0, 0, 15),
                     spaceAfter=7)
                 for item in block["items"]:
                     story.append(Paragraph("-  " + literal(item), bullet_style))
@@ -338,6 +349,16 @@ def make_story(job, palette, plain):
                         palette["mint"] if kind == "callout" else palette["practice"])
                     style.spaceBefore, style.spaceAfter = 3, 17
                 story.append(Paragraph(literal(block["text"]), style))
+            if 'animation' in block:
+                if asset_root is None:
+                    raise ValueError('Use render_animated_notes.py for jobs with animations')
+                from animations import local_path
+                animation = block['animation']
+                path = local_path(asset_root, f'assets/gifs/{animation["id"]}.png')
+                story.append(Image(str(path), width=CONTENT_WIDTH, height=CONTENT_WIDTH*540/960))
+                story.append(Paragraph(literal(animation['caption']), small))
+                story.append(Paragraph(literal('Alt text: '+animation['alt']), small))
+                story.append(Paragraph('Static final frame. Play the animation in the accompanying notebook.html.', small))
     url_sources = [s for s in job["sources"] if s["kind"] == "url"]
     if url_sources:
         story += [PageBreak(), title("Sources", "sources")]
@@ -361,6 +382,9 @@ def preflight(job):
         check_glyphs(page["title"])
         for block in page["blocks"]:
             check_glyphs(block["label"])
+            if 'animation' in block:
+                check_glyphs(block['animation']['caption'])
+                check_glyphs(block['animation']['alt'])
             if block["type"] == "code":
                 check_glyphs(block["text"], "Courier")
                 for number, line in enumerate(block["text"].splitlines(), 1):
@@ -380,7 +404,7 @@ def preflight(job):
             check_glyphs(source["value"])
 
 
-def render_notebook(job, output):
+def render_notebook(job, output, asset_root=None):
     """Create a PDF atomically; validation failures leave existing outputs intact."""
     validate_job(job)
     preflight(job)
@@ -398,7 +422,7 @@ def render_notebook(job, output):
     with tempfile.TemporaryDirectory(prefix=".notebook-forge-", dir=output.parent) as temp:
         path = Path(temp) / "notebook.pdf"
         doc = NotebookDoc(path, job["title"], palette, plain)
-        doc.multiBuild(make_story(job, palette, plain))
+        doc.multiBuild(make_story(job, palette, plain, asset_root))
         path.replace(output)
     return {"output": str(output.resolve()), "pages": doc.page,
             "topics": len(job["topics"]), "logical_pages": len(job["pages"])}

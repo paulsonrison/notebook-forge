@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "job_sha256": "665ec2e905cde2188f0caa6da43f6eaefeea029e342a75932af090438cec676d",
+  "generator_sha256": "4f8633b04988968b48fecb4cb0007892eabcaa3c8fe9e44f3aea89f76af656c3",
+  "gifs": [
+    {
+      "section": "page-0-block-0",
+      "heading": "TCP three-way handshake",
+      "label": "Understand",
+      "path": "assets/gifs/tcp-handshake.gif",
+      "still": "assets/gifs/tcp-handshake.png",
+      "still_sha256": "65b0413d9fe7ef492a77d14ddcfdb398ce4ff2e18ef451e328dde5b30ee575b1",
+      "contact_sheet": "assets/gifs/tcp-handshake-frames.png",
+      "contact_sheet_sha256": "b8761f03dce5ad2fdd4325564f7a3b3aa200a0e131966d1f719ffb8318d8aa1b",
+      "concept": "TCP three-way handshake",
+      "layout": "two vertical endpoint lifelines",
+      "pattern": "three cumulative alternating message arrows",
+      "alt": "Three messages appear between client and server: SYN, SYN plus ACK, then ACK.",
+      "caption": "Each endpoint sends a SYN and receives an acknowledgement before the connection is established.",
+      "storyboard_sha256": "637ee21c2988d756f9cdc72d09d66b6a4dd1bb06c86d975e1d5161802e865dae",
+      "geometry_sha256": "d453ac70b5dd6b1aca8a1b3f64a9b5429516876e439c68700d863200352976bc",
+      "sha256": "f55592abae3643f095e9e13f62d101393c10d10e102dccd7aa49dfdaaf72d3f8",
+      "visual_sha256": "36fd0833a71383c9c4d69d7eee4b42675b04265d37422dc71430551da2e55945",
+      "frame_count": 3,
+      "durations_ms": [
+        1000,
+        1000,
+        2200
+      ],
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "section": "page-1-block-0",
+      "heading": "Binary search",
+      "label": "Understand",
+      "path": "assets/gifs/binary-search.gif",
+      "still": "assets/gifs/binary-search.png",
+      "still_sha256": "e92d94ca8d8248763d170796cbed1c86b75d76ccb2c730f57ae7df28915acb17",
+      "contact_sheet": "assets/gifs/binary-search-frames.png",
+      "contact_sheet_sha256": "202eb306c131d186127e8e6c10d6c8718b100fdbeea50933ade3a0d279906ec7",
+      "concept": "Binary search for 23",
+      "layout": "horizontal indexed array cells",
+      "pattern": "interval elimination followed by midpoint match",
+      "alt": "Seven sorted values are shown; the left four turn grey, then 23 is highlighted at index 5.",
+      "caption": "Only the right half remains after comparing 12; the next comparison finds 23.",
+      "storyboard_sha256": "89329f55b8e95d47a03521b880e6dc8857440b861f27e5b226cd4f358051a8bc",
+      "geometry_sha256": "0713856223d27d3c7179eab9dfa26e38dbe4d3a6f6d7e26112544af97cecacaf",
+      "sha256": "e8799ef376b8f5132857fea55c2d4721e4d45efc75e358acbf24b8c12cbbb6c7",
+      "visual_sha256": "bfa1850f552435f2032abd24f306d278a2dd40bf75173fc7df43c0f00a9c4dba",
+      "frame_count": 3,
+      "durations_ms": [
+        1000,
+        1000,
+        2200
+      ],
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "section": "page-2-block-0",
+      "heading": "The water cycle",
+      "label": "Understand",
+      "path": "assets/gifs/water-cycle.gif",
+      "still": "assets/gifs/water-cycle.png",
+      "still_sha256": "d18837ca2d6df2d4ede4de491a7c5d57fac6d11c1ac76431952009ed782d7932",
+      "contact_sheet": "assets/gifs/water-cycle-frames.png",
+      "contact_sheet_sha256": "e309961b2125a28ba76d3c3db593d64192d52acdd87fda2e4d8cadf6eb6defb8",
+      "concept": "A simplified water cycle",
+      "layout": "triangular environmental reservoirs",
+      "pattern": "water parcel traces evaporation condensation and rain",
+      "alt": "A blue marker moves from surface water to cloud droplets to rain and collection along a triangular cycle.",
+      "caption": "Evaporation produces vapour; condensation makes liquid droplets; precipitation returns water to the surface.",
+      "storyboard_sha256": "df5ea5d2cfc7876cc19b924331f6144c8a0589fb3b05f170269d9f276fdcf52b",
+      "geometry_sha256": "4655e121b6e4ab31a40c1888ee62b81f27eed2f5118f1b583859e7599c7f4d67",
+      "sha256": "bca47bc4d4aa062af8fd6a03c01d48998ab17061b8e74ed79ee0d84754f242e2",
+      "visual_sha256": "5c44cf881a80896dd6d9bebfc28141e8dcc1f46463581b1fde678523c50cfafb",
+      "frame_count": 3,
+      "durations_ms": [
+        1100,
+        1100,
+        2400
+      ],
+      "dimensions": [
+        960,
+        540
+      ]
+    }
+  ],
+  "pdf_sha256": "692a7a817c6d4d451ed26d6f533373c5c1759db66e96f6fdda98c1305b774d39"
+}

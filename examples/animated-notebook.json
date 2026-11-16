@@ -1,0 +1,1248 @@
+{
+  "title": "Motion that teaches: three topics",
+  "theme": {
+    "name": "notebook",
+    "confirmed": true
+  },
+  "layout": {
+    "mode": "subtopic-pages",
+    "confirmed": true
+  },
+  "sources": [
+    {
+      "kind": "topic",
+      "value": "Original demonstrations; source concepts verified 2026-11-16"
+    },
+    {
+      "kind": "url",
+      "title": "IETF RFC 9293: TCP connection establishment",
+      "value": "https://www.rfc-editor.org/rfc/rfc9293.html#section-3.5"
+    },
+    {
+      "kind": "url",
+      "title": "Python documentation: array bisection",
+      "value": "https://docs.python.org/3/library/bisect.html"
+    },
+    {
+      "kind": "url",
+      "title": "USGS Water Science School: water cycle",
+      "value": "https://www.usgs.gov/water-science-school/water-cycle"
+    }
+  ],
+  "topics": [
+    {
+      "id": "tcp",
+      "title": "TCP three-way handshake"
+    },
+    {
+      "id": "search",
+      "title": "Binary search"
+    },
+    {
+      "id": "water",
+      "title": "The water cycle"
+    }
+  ],
+  "pages": [
+    {
+      "title": "TCP three-way handshake",
+      "covers": [
+        "tcp"
+      ],
+      "blocks": [
+        {
+          "type": "paragraph",
+          "label": "Understand",
+          "text": "A client sends SYN. The server replies with SYN and ACK, acknowledging the client sequence plus one. The client acknowledges the server SYN. This exchange establishes a TCP connection; it does not encrypt it.",
+          "animation": {
+            "id": "tcp-handshake",
+            "concept": "TCP three-way handshake",
+            "layout": "two vertical endpoint lifelines",
+            "pattern": "three cumulative alternating message arrows",
+            "motion_reason": "Order and direction show who confirms each SYN.",
+            "alt": "Three messages appear between client and server: SYN, SYN plus ACK, then ACK.",
+            "caption": "Each endpoint sends a SYN and receives an acknowledgement before the connection is established.",
+            "storyboard": {
+              "title": "TCP three-way handshake",
+              "frames": [
+                {
+                  "label": "Step 1: Client initiates",
+                  "duration_ms": 1000,
+                  "objects": [
+                    {
+                      "type": "text",
+                      "xy": [
+                        120,
+                        155
+                      ],
+                      "text": "CLIENT",
+                      "size": 26
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        700,
+                        155
+                      ],
+                      "text": "SERVER",
+                      "size": 26
+                    },
+                    {
+                      "type": "line",
+                      "xy": [
+                        190,
+                        205,
+                        190,
+                        490
+                      ]
+                    },
+                    {
+                      "type": "line",
+                      "xy": [
+                        770,
+                        205,
+                        770,
+                        490
+                      ]
+                    },
+                    {
+                      "type": "arrow",
+                      "xy": [
+                        220,
+                        250,
+                        710,
+                        250
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        270,
+                        208
+                      ],
+                      "text": "SYN: client sequence 100",
+                      "size": 24
+                    }
+                  ]
+                },
+                {
+                  "label": "Step 2: Server responds",
+                  "duration_ms": 1000,
+                  "objects": [
+                    {
+                      "type": "text",
+                      "xy": [
+                        120,
+                        155
+                      ],
+                      "text": "CLIENT",
+                      "size": 26
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        700,
+                        155
+                      ],
+                      "text": "SERVER",
+                      "size": 26
+                    },
+                    {
+                      "type": "line",
+                      "xy": [
+                        190,
+                        205,
+                        190,
+                        490
+                      ]
+                    },
+                    {
+                      "type": "line",
+                      "xy": [
+                        770,
+                        205,
+                        770,
+                        490
+                      ]
+                    },
+                    {
+                      "type": "arrow",
+                      "xy": [
+                        220,
+                        250,
+                        710,
+                        250
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        270,
+                        208
+                      ],
+                      "text": "SYN: client sequence 100",
+                      "size": 24
+                    },
+                    {
+                      "type": "arrow",
+                      "xy": [
+                        710,
+                        340,
+                        220,
+                        340
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        270,
+                        298
+                      ],
+                      "text": "SYN + ACK: acknowledges 101",
+                      "size": 24
+                    }
+                  ]
+                },
+                {
+                  "label": "Step 3: Client confirms",
+                  "duration_ms": 2200,
+                  "objects": [
+                    {
+                      "type": "text",
+                      "xy": [
+                        120,
+                        155
+                      ],
+                      "text": "CLIENT",
+                      "size": 26
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        700,
+                        155
+                      ],
+                      "text": "SERVER",
+                      "size": 26
+                    },
+                    {
+                      "type": "line",
+                      "xy": [
+                        190,
+                        205,
+                        190,
+                        490
+                      ]
+                    },
+                    {
+                      "type": "line",
+                      "xy": [
+                        770,
+                        205,
+                        770,
+                        490
+                      ]
+                    },
+                    {
+                      "type": "arrow",
+                      "xy": [
+                        220,
+                        250,
+                        710,
+                        250
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        270,
+                        208
+                      ],
+                      "text": "SYN: client sequence 100",
+                      "size": 24
+                    },
+                    {
+                      "type": "arrow",
+                      "xy": [
+                        710,
+                        340,
+                        220,
+                        340
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        270,
+                        298
+                      ],
+                      "text": "SYN + ACK: acknowledges 101",
+                      "size": 24
+                    },
+                    {
+                      "type": "arrow",
+                      "xy": [
+                        220,
+                        430,
+                        710,
+                        430
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        270,
+                        388
+                      ],
+                      "text": "ACK: acknowledges server SYN",
+                      "size": 24
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "practice",
+          "label": "Recall",
+          "text": "Which message acknowledges the server SYN? The final client ACK."
+        }
+      ]
+    },
+    {
+      "title": "Binary search",
+      "covers": [
+        "search"
+      ],
+      "blocks": [
+        {
+          "type": "paragraph",
+          "label": "Understand",
+          "text": "Binary search requires sorted data. For target 23 in [2, 5, 8, 12, 16, 23, 38], the first midpoint is 12. Discard it and all smaller values. The next midpoint is 23 at index 5, so the search succeeds.",
+          "animation": {
+            "id": "binary-search",
+            "concept": "Binary search for 23",
+            "layout": "horizontal indexed array cells",
+            "pattern": "interval elimination followed by midpoint match",
+            "motion_reason": "Successive states make the shrinking search interval visible.",
+            "alt": "Seven sorted values are shown; the left four turn grey, then 23 is highlighted at index 5.",
+            "caption": "Only the right half remains after comparing 12; the next comparison finds 23.",
+            "storyboard": {
+              "title": "Binary search for 23",
+              "frames": [
+                {
+                  "label": "Step 1: Middle is 12; target is larger",
+                  "duration_ms": 1000,
+                  "objects": [
+                    {
+                      "type": "text",
+                      "xy": [
+                        40,
+                        165
+                      ],
+                      "text": "Sorted values; search for 23",
+                      "size": 28
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        40,
+                        260,
+                        140,
+                        345
+                      ],
+                      "fill": "#C9F5DE"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        70,
+                        282
+                      ],
+                      "text": "2",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        70,
+                        365
+                      ],
+                      "text": "0",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        165,
+                        260,
+                        265,
+                        345
+                      ],
+                      "fill": "#C9F5DE"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        195,
+                        282
+                      ],
+                      "text": "5",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        195,
+                        365
+                      ],
+                      "text": "1",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        290,
+                        260,
+                        390,
+                        345
+                      ],
+                      "fill": "#C9F5DE"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        320,
+                        282
+                      ],
+                      "text": "8",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        320,
+                        365
+                      ],
+                      "text": "2",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        415,
+                        260,
+                        515,
+                        345
+                      ],
+                      "fill": "#FFF068"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        445,
+                        282
+                      ],
+                      "text": "12",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        445,
+                        365
+                      ],
+                      "text": "3",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        540,
+                        260,
+                        640,
+                        345
+                      ],
+                      "fill": "#C9F5DE"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        570,
+                        282
+                      ],
+                      "text": "16",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        570,
+                        365
+                      ],
+                      "text": "4",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        665,
+                        260,
+                        765,
+                        345
+                      ],
+                      "fill": "#C9F5DE"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        695,
+                        282
+                      ],
+                      "text": "23",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        695,
+                        365
+                      ],
+                      "text": "5",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        790,
+                        260,
+                        890,
+                        345
+                      ],
+                      "fill": "#C9F5DE"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        820,
+                        282
+                      ],
+                      "text": "38",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        820,
+                        365
+                      ],
+                      "text": "6",
+                      "size": 24
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        40,
+                        450
+                      ],
+                      "text": "Discarded values stay grey; indices begin at 0.",
+                      "size": 24
+                    }
+                  ]
+                },
+                {
+                  "label": "Step 2: Keep only the right half",
+                  "duration_ms": 1000,
+                  "objects": [
+                    {
+                      "type": "text",
+                      "xy": [
+                        40,
+                        165
+                      ],
+                      "text": "Sorted values; search for 23",
+                      "size": 28
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        40,
+                        260,
+                        140,
+                        345
+                      ],
+                      "fill": "#E5E7EB"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        70,
+                        282
+                      ],
+                      "text": "2",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        70,
+                        365
+                      ],
+                      "text": "0",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        165,
+                        260,
+                        265,
+                        345
+                      ],
+                      "fill": "#E5E7EB"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        195,
+                        282
+                      ],
+                      "text": "5",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        195,
+                        365
+                      ],
+                      "text": "1",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        290,
+                        260,
+                        390,
+                        345
+                      ],
+                      "fill": "#E5E7EB"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        320,
+                        282
+                      ],
+                      "text": "8",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        320,
+                        365
+                      ],
+                      "text": "2",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        415,
+                        260,
+                        515,
+                        345
+                      ],
+                      "fill": "#E5E7EB"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        445,
+                        282
+                      ],
+                      "text": "12",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        445,
+                        365
+                      ],
+                      "text": "3",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        540,
+                        260,
+                        640,
+                        345
+                      ],
+                      "fill": "#C9F5DE"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        570,
+                        282
+                      ],
+                      "text": "16",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        570,
+                        365
+                      ],
+                      "text": "4",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        665,
+                        260,
+                        765,
+                        345
+                      ],
+                      "fill": "#C9F5DE"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        695,
+                        282
+                      ],
+                      "text": "23",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        695,
+                        365
+                      ],
+                      "text": "5",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        790,
+                        260,
+                        890,
+                        345
+                      ],
+                      "fill": "#C9F5DE"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        820,
+                        282
+                      ],
+                      "text": "38",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        820,
+                        365
+                      ],
+                      "text": "6",
+                      "size": 24
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        40,
+                        450
+                      ],
+                      "text": "Discarded values stay grey; indices begin at 0.",
+                      "size": 24
+                    }
+                  ]
+                },
+                {
+                  "label": "Step 3: Middle is 23; target found",
+                  "duration_ms": 2200,
+                  "objects": [
+                    {
+                      "type": "text",
+                      "xy": [
+                        40,
+                        165
+                      ],
+                      "text": "Sorted values; search for 23",
+                      "size": 28
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        40,
+                        260,
+                        140,
+                        345
+                      ],
+                      "fill": "#E5E7EB"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        70,
+                        282
+                      ],
+                      "text": "2",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        70,
+                        365
+                      ],
+                      "text": "0",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        165,
+                        260,
+                        265,
+                        345
+                      ],
+                      "fill": "#E5E7EB"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        195,
+                        282
+                      ],
+                      "text": "5",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        195,
+                        365
+                      ],
+                      "text": "1",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        290,
+                        260,
+                        390,
+                        345
+                      ],
+                      "fill": "#E5E7EB"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        320,
+                        282
+                      ],
+                      "text": "8",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        320,
+                        365
+                      ],
+                      "text": "2",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        415,
+                        260,
+                        515,
+                        345
+                      ],
+                      "fill": "#E5E7EB"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        445,
+                        282
+                      ],
+                      "text": "12",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        445,
+                        365
+                      ],
+                      "text": "3",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        540,
+                        260,
+                        640,
+                        345
+                      ],
+                      "fill": "#C9F5DE"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        570,
+                        282
+                      ],
+                      "text": "16",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        570,
+                        365
+                      ],
+                      "text": "4",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        665,
+                        260,
+                        765,
+                        345
+                      ],
+                      "fill": "#FFF068"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        695,
+                        282
+                      ],
+                      "text": "23",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        695,
+                        365
+                      ],
+                      "text": "5",
+                      "size": 24
+                    },
+                    {
+                      "type": "rect",
+                      "box": [
+                        790,
+                        260,
+                        890,
+                        345
+                      ],
+                      "fill": "#C9F5DE"
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        820,
+                        282
+                      ],
+                      "text": "38",
+                      "size": 30
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        820,
+                        365
+                      ],
+                      "text": "6",
+                      "size": 24
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        40,
+                        450
+                      ],
+                      "text": "Discarded values stay grey; indices begin at 0.",
+                      "size": 24
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "practice",
+          "label": "Recall",
+          "text": "Why must the values be sorted? A midpoint comparison must identify which half can contain the target."
+        }
+      ]
+    },
+    {
+      "title": "The water cycle",
+      "covers": [
+        "water"
+      ],
+      "blocks": [
+        {
+          "type": "paragraph",
+          "label": "Understand",
+          "text": "In this simplified cycle, liquid surface water evaporates into water vapour. Vapour cools and condenses into liquid droplets that form clouds. Water can return as precipitation and collect at the surface. Many real pathways, such as transpiration and groundwater flow, are omitted here.",
+          "animation": {
+            "id": "water-cycle",
+            "concept": "A simplified water cycle",
+            "layout": "triangular environmental reservoirs",
+            "pattern": "water parcel traces evaporation condensation and rain",
+            "motion_reason": "Moving through the three stages connects the changes of state.",
+            "alt": "A blue marker moves from surface water to cloud droplets to rain and collection along a triangular cycle.",
+            "caption": "Evaporation produces vapour; condensation makes liquid droplets; precipitation returns water to the surface.",
+            "storyboard": {
+              "title": "A simplified water cycle",
+              "frames": [
+                {
+                  "label": "Step 1: Liquid evaporates as vapour",
+                  "duration_ms": 1100,
+                  "objects": [
+                    {
+                      "type": "text",
+                      "xy": [
+                        35,
+                        465
+                      ],
+                      "text": "Surface water",
+                      "size": 26
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        350,
+                        150
+                      ],
+                      "text": "Cloud droplets",
+                      "size": 26
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        670,
+                        465
+                      ],
+                      "text": "Rain / collection",
+                      "size": 26
+                    },
+                    {
+                      "type": "arrow",
+                      "xy": [
+                        235,
+                        375,
+                        420,
+                        245
+                      ]
+                    },
+                    {
+                      "type": "arrow",
+                      "xy": [
+                        530,
+                        245,
+                        730,
+                        375
+                      ]
+                    },
+                    {
+                      "type": "arrow",
+                      "xy": [
+                        690,
+                        425,
+                        280,
+                        425
+                      ]
+                    },
+                    {
+                      "type": "ellipse",
+                      "box": [
+                        165,
+                        375,
+                        215,
+                        425
+                      ],
+                      "fill": "#145F9B"
+                    }
+                  ]
+                },
+                {
+                  "label": "Step 2: Vapour cools and condenses",
+                  "duration_ms": 1100,
+                  "objects": [
+                    {
+                      "type": "text",
+                      "xy": [
+                        35,
+                        465
+                      ],
+                      "text": "Surface water",
+                      "size": 26
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        350,
+                        150
+                      ],
+                      "text": "Cloud droplets",
+                      "size": 26
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        670,
+                        465
+                      ],
+                      "text": "Rain / collection",
+                      "size": 26
+                    },
+                    {
+                      "type": "arrow",
+                      "xy": [
+                        235,
+                        375,
+                        420,
+                        245
+                      ]
+                    },
+                    {
+                      "type": "arrow",
+                      "xy": [
+                        530,
+                        245,
+                        730,
+                        375
+                      ]
+                    },
+                    {
+                      "type": "arrow",
+                      "xy": [
+                        690,
+                        425,
+                        280,
+                        425
+                      ]
+                    },
+                    {
+                      "type": "ellipse",
+                      "box": [
+                        445,
+                        185,
+                        495,
+                        235
+                      ],
+                      "fill": "#145F9B"
+                    }
+                  ]
+                },
+                {
+                  "label": "Step 3: Droplets fall as precipitation",
+                  "duration_ms": 2400,
+                  "objects": [
+                    {
+                      "type": "text",
+                      "xy": [
+                        35,
+                        465
+                      ],
+                      "text": "Surface water",
+                      "size": 26
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        350,
+                        150
+                      ],
+                      "text": "Cloud droplets",
+                      "size": 26
+                    },
+                    {
+                      "type": "text",
+                      "xy": [
+                        670,
+                        465
+                      ],
+                      "text": "Rain / collection",
+                      "size": 26
+                    },
+                    {
+                      "type": "arrow",
+                      "xy": [
+                        235,
+                        375,
+                        420,
+                        245
+                      ]
+                    },
+                    {
+                      "type": "arrow",
+                      "xy": [
+                        530,
+                        245,
+                        730,
+                        375
+                      ]
+                    },
+                    {
+                      "type": "arrow",
+                      "xy": [
+                        690,
+                        425,
+                        280,
+                        425
+                      ]
+                    },
+                    {
+                      "type": "ellipse",
+                      "box": [
+                        745,
+                        375,
+                        795,
+                        425
+                      ],
+                      "fill": "#145F9B"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "practice",
+          "label": "Recall",
+          "text": "Does evaporation produce cloud droplets directly? No. Condensation of vapour forms liquid droplets."
+        }
+      ]
+    }
+  ]
+}

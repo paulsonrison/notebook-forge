@@ -6,7 +6,7 @@ Ask the user to choose it for each new notebook before drafting.
 | Element | Default |
 |---|---|
 | Paper | Warm ivory #FFFEF6, A4 portrait |
-| Rules | Pale cyan #D6EDF0, 19-point spacing |
+| Rules | Pale cyan #D6EDF0, 19-point spacing, masked beneath text |
 | Margin | Red vertical line, left of the content |
 | Ink | Dark blue #193963 |
 | Titles | Comic Neue Bold, yellow highlighter #FFF068 |
@@ -30,6 +30,12 @@ Preserve comfortable whitespace. Every topic/subtopic page should teach
 something useful; an overview page must contain orientation, not just a title.
 Long content continues on additional pages. Extra pages are allowed by "at least
 a page"; a strict user page limit needs editorial reduction, not unreadable type.
+
+Page rules are decorative, not a text baseline grid. Keep opaque paper/panel
+fills behind every text area, including split paragraphs, labels, contents,
+code and animation captions. Do not try to fix collisions merely by moving the
+first baseline: body leading and block spacing vary. Run the structural and
+raster checks, then inspect all pages visually. See SKILL.md for the two checks.
 
 The bundled Comic Neue font is SIL OFL licensed; see assets/fonts/OFL.txt.
 ReportLab supplies Bitstream Vera with its own license. Do not copy fonts from

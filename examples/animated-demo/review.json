@@ -1,0 +1,31 @@
+{
+  "reviewer": "Codex: decoded-frame and PDF inspection, with independent topic/readability review",
+  "viewer_limitation": "Browser URL policy rejected local file preview. No alternate browser or network workaround was attempted.",
+  "pdf_review": "Inspected all six PDF pages including cover, contents, three topics and sources. Rules are masked below text, captions and panels; no clipping or overlap observed.",
+  "gifs": [
+    {
+      "section": "page-0-block-0",
+      "fingerprint": "7752d4abdbd9608b18cfe5302c086c5d289a4942451f1a6e56e90d9e0a0085e0",
+      "approved": true,
+      "alignment": "TCP sequence matches the host paragraph: client SYN, server SYN+ACK acknowledging 101, final client ACK. The diagram does not imply encryption.",
+      "readability": "Inspected every decoded frame: distinct endpoint lifelines and cumulative arrows; large labels fit with no overlap. Caption and alt identify the exchange.",
+      "playback": "Decoded 3 distinct frames at 1000, 1000 and 2200 ms; infinite loop is encoded. Browser file-URL preview was blocked, so no live browser playback is claimed."
+    },
+    {
+      "section": "page-1-block-0",
+      "fingerprint": "0ae1874fb26e52bc2de7772659a027312f3da76dd544cc496c15b5c625950234",
+      "approved": true,
+      "alignment": "The exact sorted array and target 23 match the explanation. First midpoint is 12, indices 0-3 are discarded, and 23 at index 5 is found.",
+      "readability": "Inspected every decoded frame: row cells, zero-based indices and grey exclusions remain readable. Final highlight distinguishes found value from remaining candidates.",
+      "playback": "Decoded 3 distinct frames at 1000, 1000 and 2200 ms with loop=0. Contact-sheet states progress correctly; live browser preview was blocked by local-file policy."
+    },
+    {
+      "section": "page-2-block-0",
+      "fingerprint": "dd4187240c0a382408e3d651b8e3855b6f868b340b77fe40ab95fcfd18aaac5f",
+      "approved": true,
+      "alignment": "Surface water, cloud droplets and rain/collection follow the explicitly simplified host explanation. Marker denotes location; text explains evaporation and condensation.",
+      "readability": "Inspected every decoded frame: triangle layout differs from endpoint/array diagrams, marker positions are distinct, stage labels fit and the final pause supports recall.",
+      "playback": "Decoded 3 distinct frames at 1100, 1100 and 2400 ms with loop=0. All frames load and show the intended cycle; live browser playback was unavailable due to file-URL policy."
+    }
+  ]
+}

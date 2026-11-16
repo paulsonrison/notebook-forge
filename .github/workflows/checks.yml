@@ -25,6 +25,10 @@ jobs:
       - run: python -m unittest discover -s tests -v
       - run: python tools/check_package.py
       - run: python skills/notebook-forge/scripts/render_notebook.py examples/learning-notebook.json --output build/demo.pdf
+      - run: python skills/notebook-forge/scripts/render_animated_notes.py examples/animated-notebook.json --output-dir build/animated
+      - run: python skills/notebook-forge/scripts/verify_gifs.py build/animated --technical-only
+      - run: python skills/notebook-forge/scripts/verify_gifs.py examples/animated-demo
+      - run: python skills/notebook-forge/scripts/check_readability.py build/demo.pdf
       - uses: actions/upload-artifact@v4
         with:
           name: notebook-demo-${{ matrix.os }}-${{ matrix.python }}

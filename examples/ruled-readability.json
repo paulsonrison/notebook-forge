@@ -1,0 +1,48 @@
+{
+  "title": "Network devices and their roles",
+  "theme": {
+    "name": "notebook",
+    "confirmed": true
+  },
+  "layout": {
+    "mode": "subtopic-pages",
+    "confirmed": true
+  },
+  "sources": [
+    {
+      "kind": "topic",
+      "value": "Network devices and their roles"
+    }
+  ],
+  "topics": [
+    {
+      "id": "devices",
+      "title": "Network devices and their roles"
+    }
+  ],
+  "pages": [
+    {
+      "title": "03.02 Network devices and their roles",
+      "covers": [
+        "devices"
+      ],
+      "blocks": [
+        {
+          "type": "paragraph",
+          "label": "Understand",
+          "text": "A switch usually forwards Ethernet frames within a LAN. A router forwards packets between IP networks. An access point connects wireless stations to a LAN. A modem adapts a provider access technology; a firewall enforces traffic policy."
+        },
+        {
+          "type": "bullets",
+          "label": "Key details",
+          "items": [
+            "Consumer routers combine several functions",
+            "A NIC attaches a host to a network",
+            "Layer-3 switches can route",
+            "Device role matters more than enclosure shape"
+          ]
+        }
+      ]
+    }
+  ]
+}

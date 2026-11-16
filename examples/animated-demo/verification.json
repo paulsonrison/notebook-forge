@@ -1,0 +1,10 @@
+{
+  "pass1": true,
+  "pass2": true,
+  "gifs": 3,
+  "review_fingerprints": {
+    "page-0-block-0": "7752d4abdbd9608b18cfe5302c086c5d289a4942451f1a6e56e90d9e0a0085e0",
+    "page-1-block-0": "0ae1874fb26e52bc2de7772659a027312f3da76dd544cc496c15b5c625950234",
+    "page-2-block-0": "dd4187240c0a382408e3d651b8e3855b6f868b340b77fe40ab95fcfd18aaac5f"
+  }
+}
