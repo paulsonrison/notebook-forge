@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.0 — 2026-11-16
+
+- Require separate image/GIF permission for new notebooks; missing or denied
+  consent blocks that media type. Keep historical text-only jobs compatible.
+- Require at least one exact-topic teaching image for every topic/subtopic when
+  images are approved. Draw original static PNG scenes locally with captions/alt.
+- Embed static images in PDFs and HTML; keep approved GIFs in HTML only.
+- Extend both verification gates to image integrity, coverage, uniqueness,
+  topic mappings, source scenes, PDF hashes and recorded visual/topic audits.
+- Remove obsolete generated assets on revisions when media choices change.
+- Add a three-topic illustrated PDF demo and regression tests for consent.
+
 ## 1.0.0 — 2026-11-16
 
 - Generate original local GIFs from custom topic-specific storyboards using

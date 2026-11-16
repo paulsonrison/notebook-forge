@@ -7,8 +7,10 @@ cheat sheets and revision notebooks. Bring a topic, pasted notes, data, a docume
 or an accessible source. Your agent authors the material; a local Python renderer
 checks the structure and produces the PDF.
 
-**v1.0.0:** Original topic-specific GIFs now accompany the notes in playable HTML.
-PDFs include stills and captions. Blue notebook rules are masked beneath text
+**v1.1.0:** With your approval, every topic and subtopic gets at least one
+original teaching image embedded in PDF and HTML. Images and GIFs require
+separate permission. Approved GIFs play only in HTML; PDF uses static teaching
+images instead of GIF frames. Blue notebook rules are masked beneath text
 to prevent the line-overlap issue, with structural and raster checks.
 
 ![Notebook Forge example](examples/preview.png)
@@ -26,6 +28,13 @@ For each new notebook, the skill asks:
 2. **Page structure:** every topic and subtopic on dedicated pages, grouped
    pages per main topic, compact revision sheets, or a custom structure.
 3. **Source:** only if you have not already supplied a topic or material.
+4. **Images:** permission to create a relevant teaching image for every topic
+   and subtopic (recommended).
+5. **GIFs:** separate permission for optional animations in companion HTML.
+
+Permission choices are recorded in the job. No image or GIF is generated without
+approval for that kind. Declining images explicitly waives the image coverage
+requirement; historical text-only jobs remain supported.
 
 It waits for the required choices instead of assuming that a default is approval.
 Confirmed choices carry forward for revisions of the same notebook.
@@ -114,13 +123,47 @@ The renderer adds a cover, linked contents, page numbers and bookmarks.
 
 ## Verification and limitations
 
-### Original animated notes
+### Teaching images in PDFs
+
+For the image-first workflow, the agent draws a complete, original teaching
+diagram for each topic/subtopic after obtaining image permission. Each picture
+must teach the exact host concept, appear immediately after that explanation,
+use a distinct composition, and include a caption and descriptive alt text.
+No fetched, hotlinked, recycled or decorative filler images are used.
+
+```sh
+python skills/notebook-forge/scripts/render_notes.py examples/illustrated-notebook.json --output-dir build/illustrated
+python skills/notebook-forge/scripts/verify_media.py build/illustrated --technical-only
+```
+
+Pass 1 verifies permission, complete topic coverage, valid static PNGs, exact
+paths, unique file/pixel/geometry hashes and heading/topic mappings. Pass 2 is an
+actual audit of each image alongside its host explanation and rendered PDF:
+check topic accuracy, readable labels, arrow directions, captions and overlap.
+Record specific findings using the technical fingerprints, then run:
+
+```sh
+python skills/notebook-forge/scripts/verify_media.py build/illustrated
+python skills/notebook-forge/scripts/check_readability.py build/illustrated/notebook.pdf
+```
+
+Missing/stale reviews fail; fix and regenerate failed images and repeat both
+passes before delivery. See [the image/consent contract](skills/notebook-forge/references/illustrations.md),
+[the illustrated PDF example](examples/illustrated-demo/notebook.pdf) and
+[its HTML companion](examples/illustrated-demo/notebook.html). The three topics
+are TCP handshake, binary search and the water cycle. Images are directly
+embedded in the PDF, not attachments or links that require a viewer feature.
+See [the v1.1.0 validation evidence](docs/releases/validation-v1.1.0.md) for
+permission tests, topic/PDF audits and installed-plugin refresh instructions.
+
+### Optional GIFs in HTML
 
 The agent chooses concepts where motion helps understanding, then authors a
 fresh local storyboard for each host explanation. Pillow draws every GIF from
 scratch; the pipeline never downloads, scrapes or hotlinks GIFs. Assets live
 beside the notes in `assets/gifs/`. Each figure immediately follows its own
-explanation, with a caption and descriptive alt text underneath.
+explanation, with a caption and descriptive alt text underneath. This workflow
+also requires explicit GIF permission; approving images alone is insufficient.
 
 ```sh
 python -m pip install -r requirements.txt
@@ -130,7 +173,7 @@ python skills/notebook-forge/scripts/verify_gifs.py build/animated --technical-o
 
 This creates a **draft** with three different educational animations: TCP
 handshake, binary search and the water cycle. Open `build/animated/notebook.html`
-with its adjacent assets. GIFs play in HTML; PDFs show final-state stills.
+with its adjacent assets. GIFs play only in HTML; PDFs use separately approved static teaching images.
 Reduced-motion preferences show static previews.
 
 The required gates are:
@@ -190,7 +233,7 @@ Render PDFs with a local tool such as Poppler and inspect every page:
 pdftoppm -png -scale-to 1400 build/my-notebook.pdf build/page
 ```
 
-- PDF and animated HTML companion output are supported in v1.0.0; DOCX/PPTX exports are not implemented.
+- Illustrated PDF and optional animated HTML output are supported in v1.1.0; DOCX/PPTX exports are not implemented.
 - The default fonts support a limited set of left-to-right glyphs. Unsupported
   glyphs fail clearly. Complex scripts need an appropriate font/shaping renderer.
 - Code is ASCII monospace. Rewrite long lines instead of reducing type size.

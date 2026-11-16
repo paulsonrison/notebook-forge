@@ -19,6 +19,8 @@ jobs:
       - run: python tools/check_package.py
       - run: python skills/notebook-forge/scripts/verify_gifs.py examples/animated-demo
       - run: python skills/notebook-forge/scripts/check_readability.py examples/animated-demo/notebook.pdf
+      - run: python skills/notebook-forge/scripts/verify_media.py examples/illustrated-demo
+      - run: python skills/notebook-forge/scripts/check_readability.py examples/illustrated-demo/notebook.pdf
       - run: python tools/build_release.py
       - uses: actions/upload-artifact@v4
         with:
@@ -47,5 +49,5 @@ jobs:
           fi
           gh release create "v$version" "dist/notebook-forge-$version.zip" \
             --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
-            --title "Notebook Forge v$version — Animated learning notes" \
+            --title "Notebook Forge v$version - Illustrated learning notes" \
             --notes-file "docs/releases/v$version.md"

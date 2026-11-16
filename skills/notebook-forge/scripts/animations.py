@@ -130,14 +130,14 @@ def coordinates(obj, key, count, min_y=140):
     return values
 
 
-def draw_frames(animation):
+def draw_frames(animation, static=False):
     board = animation['storyboard']
     frames = []
     for index, frame in enumerate(board['frames'], 1):
         image = Image.new('RGB', SIZE, PAPER)
         draw = ImageDraw.Draw(image)
         text(draw, [28, 18], board['title'], 32)
-        text(draw, [28, 76], f'{index}/{len(board["frames"])}  {frame["label"]}', 26)
+        text(draw, [28, 76], frame['label'] if static else f'{index}/{len(board["frames"])}  {frame["label"]}', 26)
         for obj in frame['objects']:
             kind = obj.get('type')
             fill = obj.get('fill', INK)
@@ -191,6 +191,7 @@ def generator_hash():
 def render_html(job, manifest):
     e = lambda value: escape(str(value), quote=True)
     by_section = {item['section']: item for item in manifest['gifs']}
+    pictures = {item['section']: item for item in manifest.get('images', [])}
     parts = ['<!doctype html><html lang="en"><meta charset="utf-8">',
              '<meta name="viewport" content="width=device-width, initial-scale=1">',
              f'<title>{e(job["title"])}</title>',
@@ -207,6 +208,9 @@ def render_html(job, manifest):
                 parts.append(f'<pre>{e(block["text"])}</pre>')
             else:
                 parts.append(f'<p>{e(block["text"])}</p>')
+            if key in pictures:
+                item = pictures[key]
+                parts.append(f'<figure data-topic="{e(item["topic"])}" data-section="{key}"><img src="{e(item["path"])}" alt="{e(item["alt"])}"><figcaption>{e(item["caption"])}<br>Alt text: {e(item["alt"])}</figcaption></figure>')
             if key in by_section:
                 item = by_section[key]
                 parts.append(f'<figure data-section="{key}"><img class="motion" src="{e(item["path"])}" alt="{e(item["alt"])}"><img class="still" src="{e(item["still"])}" alt="{e(item["alt"])}"><figcaption>{e(item["caption"])}<br>Alt text: {e(item["alt"])}</figcaption></figure>')
@@ -219,6 +223,7 @@ def render_html(job, manifest):
 def build_notes(job, output_dir):
     """Build draft bundle after Pass 1. Final delivery requires a separate review."""
     from render_notebook import validate_job, preflight, render_notebook
+    from illustrations import build_images
     validate_job(job)
     preflight(job)
     validate_animations(job)
@@ -227,7 +232,7 @@ def build_notes(job, output_dir):
     with tempfile.TemporaryDirectory(prefix='.forge-', dir=output_dir.parent) as temp:
         root = Path(temp)
         (root / 'assets/gifs').mkdir(parents=True)
-        manifest = {'version': 1, 'job_sha256': digest(job), 'generator_sha256': generator_hash(), 'gifs': []}
+        manifest = {'version': 2, 'job_sha256': digest(job), 'generator_sha256': generator_hash(), 'gifs': [], 'images': build_images(job, root)}
         for section, page, block, animation in entries(job):
             relative = f'assets/gifs/{animation["id"]}.gif'
             path = local_path(root, relative)
@@ -265,17 +270,34 @@ def build_notes(job, output_dir):
         # may otherwise redirect valid staged paths outside the output folder.
         targets = [(source, local_path(output_dir, source.relative_to(root).as_posix()))
                    for source in root.rglob('*') if source.is_file()]
+        old_manifest = output_dir / 'manifest.json'
+        stale_assets = []
+        if old_manifest.is_file():
+            previous = json.loads(old_manifest.read_text(encoding='utf-8'))
+            current_paths = {source.relative_to(root).as_posix() for source, _ in targets}
+            for item in previous.get('gifs', []) + previous.get('images', []):
+                for key in ('path', 'still', 'contact_sheet'):
+                    relative = item.get(key)
+                    if relative and relative not in current_paths:
+                        if not re.fullmatch(r'assets/(?:gifs|images)/[a-z0-9-]+\.(?:gif|png)', relative):
+                            raise ValueError('Invalid stale generated asset path')
+                        stale_assets.append(local_path(output_dir, relative))
         for source, target in targets:
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(source, target)
+        for path in stale_assets:
+            path.unlink(missing_ok=True)
     # An old verification report must never attest to a newly built draft.
     (output_dir / 'verification.json').unlink(missing_ok=True)
-    return {'output': str(output_dir.resolve()), 'gifs': len(manifest['gifs']), 'pass1': True, 'pass2': False, 'status': 'draft: visual/topic/playback review required'}
+    (output_dir / 'review.json').unlink(missing_ok=True)
+    return {'output': str(output_dir.resolve()), 'gifs': len(manifest['gifs']), 'images': len(manifest['images']), 'pass1': True, 'pass2': False, 'status': 'draft: visual/topic review required'}
 
 
 def verify_bundle(job, root, require_review=True):
     """Technical checks + hash-bound editorial attestations; no semantic auto-pass."""
     root = Path(root)
+    from illustrations import validate_media, verify_images
+    validate_media(job)
     validate_animations(job)
     manifest = json.loads((root / 'manifest.json').read_text(encoding='utf-8'))
     if manifest.get('job_sha256') != digest(job) or manifest.get('generator_sha256') != generator_hash():
@@ -331,4 +353,5 @@ def verify_bundle(job, root, require_review=True):
             for key in ('alignment', 'readability', 'playback'):
                 if len(required_text(item, key).strip()) < 20:
                     raise ValueError('Pass 2 requires concrete alignment, readability and playback evidence')
-    return {'pass1': True, 'pass2': bool(require_review), 'gifs': len(records), 'review_fingerprints': {r['section']: r['review_fingerprint'] for r in records}}
+    image_fingerprints = verify_images(job, root, manifest, require_review)
+    return {'pass1': True, 'pass2': bool(require_review), 'gifs': len(records), 'images': len(image_fingerprints), 'review_fingerprints': {r['section']: r['review_fingerprint'] for r in records}, 'image_review_fingerprints': image_fingerprints}

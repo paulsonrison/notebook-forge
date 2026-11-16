@@ -18,7 +18,7 @@ def main():
         print(json.dumps(report))
     except (ValueError, OSError, KeyError, TypeError) as error:
         (args.bundle / 'verification.json').unlink(missing_ok=True)
-        parser.exit(2, f'GIF verification: {error}\n')
+        parser.exit(2, f'Media verification: {error}\n')
 
 
 if __name__ == '__main__':

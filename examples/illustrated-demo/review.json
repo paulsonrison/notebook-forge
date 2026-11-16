@@ -1,0 +1,28 @@
+{
+  "reviewer": "Codex, with independent source-image and PDF-size topic/readability audit",
+  "pdf_review": "Inspected all six pages: cover, contents, three topics and sources. Figure and captions remain in their host sections, with no rule collisions or clipping.",
+  "images": [
+    {
+      "section": "page-0-block-0",
+      "fingerprint": "40257eb7da536b27810833846265d680d6b87589bc3abd8035bcaeef73b28c59",
+      "approved": true,
+      "alignment": "Client/server lifelines and three directed messages match the TCP paragraph: SYN 100, SYN plus ACK acknowledging 101, final client acknowledgement. No unrelated protocol is implied.",
+      "readability": "Inspected the source PNG and PDF page 3 at printed scale. All labels and arrows are distinct; 24 px source labels render around 12.5 pt. Caption and alt describe this exact exchange."
+    },
+    {
+      "section": "page-1-block-0",
+      "fingerprint": "b8fcc5f5202aba69931457580abcc6dfbb8e50060e4e99d6e94128c7c589c25e",
+      "approved": true,
+      "alignment": "The seven sorted values and target 23 match the binary-search explanation. The first comparison is 12; indices 0-3 are grey/discarded; 23 is found at index 5.",
+      "readability": "Inspected source PNG and PDF page 4. Comparison/match pointers, values and indices are readable and separate. Caption and alt match the displayed array; no clipping or overlap."
+    },
+    {
+      "section": "page-2-block-0",
+      "fingerprint": "6e1bda5d2260fdb556d1ad4d0c9b3d55fa3c4ca7357c83e45669ed8e32f7b60d",
+      "approved": true,
+      "alignment": "The explicitly simplified cycle matches surface water, evaporation, condensation into cloud droplets, precipitation and collection. Other pathways remain explicitly omitted in the paragraph.",
+      "readability": "Inspected source PNG and PDF page 5. Moved condensation and precipitation labels away from arrows, regenerated and rechecked. Labels, arrowheads, caption and alt remain clear at PDF size."
+    }
+  ],
+  "gifs": []
+}

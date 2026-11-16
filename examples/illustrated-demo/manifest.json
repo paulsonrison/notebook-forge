@@ -1,0 +1,66 @@
+{
+  "version": 2,
+  "job_sha256": "a612564dc87373a668c8d32ee0cce9c637e4a0e8f27a537109d79cc78024ebb8",
+  "generator_sha256": "f08b4349bb7f009baf7bea0c8bfae2e5e93de2ad31b85cf43e989e6c032ab0db",
+  "gifs": [],
+  "images": [
+    {
+      "section": "page-0-block-0",
+      "heading": "TCP three-way handshake",
+      "label": "Understand",
+      "path": "assets/images/tcp-handshake-diagram.png",
+      "topic": "tcp",
+      "concept": "TCP three-way handshake",
+      "layout": "two vertical endpoint lifelines",
+      "caption": "Each endpoint sends a SYN and receives an acknowledgement before the connection is established.",
+      "alt": "Three messages appear between client and server: SYN, SYN plus ACK, then ACK.",
+      "scene_sha256": "ccd661876c8e9d395bc7412863bc7f55766218d81909d96f215cf773de2ff729",
+      "geometry_sha256": "2649251ee3bf9f08be21d15625cd2384bf379f0f00a0523bd6de7b4725d4f69e",
+      "sha256": "2a3799fc5af30e58b874653ed9267efc4e0550f99d14057ff4e1b53769cc0379",
+      "visual_sha256": "f026c3782283e656f00d26aae39c3b28e71f1eb7d96e5b883d8a4ae7470fd707",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "section": "page-1-block-0",
+      "heading": "Binary search",
+      "label": "Understand",
+      "path": "assets/images/binary-search-diagram.png",
+      "topic": "search",
+      "concept": "Binary search for 23",
+      "layout": "annotated array with comparison and match pointers",
+      "caption": "Compare midpoint 12, discard the left four values, then find 23 at index 5.",
+      "alt": "A sorted array shows 12 as the first comparison and 23 as the match; indices 0 to 3 are discarded.",
+      "scene_sha256": "de87d6bf5e6197760f354f16d486ba6cdd4f661c8e1afbaaaed0115790920cd9",
+      "geometry_sha256": "f3276e0b18a47866749624eb4a56a214a6110ea3fcaf035fcacc5793ad366679",
+      "sha256": "d5b5b192e3af6111888802089f203c52d1e4a6438c773d7d25097231a881b647",
+      "visual_sha256": "eed0dbcde237ef34204ee160d15a608f943c8ed641b2df3e27021a7cdb233338",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "section": "page-2-block-0",
+      "heading": "The water cycle",
+      "label": "Understand",
+      "path": "assets/images/water-cycle-diagram.png",
+      "topic": "water",
+      "concept": "A simplified water cycle",
+      "layout": "labelled three-reservoir cycle with state-change annotations",
+      "caption": "Liquid evaporates into vapour, condensation forms cloud droplets, and precipitation returns water to the surface.",
+      "alt": "Arrows connect surface water to cloud droplets through evaporation and condensation, then to rain and collection.",
+      "scene_sha256": "6e6ba8d178a1ffa92af3b29a0eb2da2ff5f65d565b59a9e18e471a4402ed3da2",
+      "geometry_sha256": "ce8932deb3eda9411273608cf2ef2e8f439ef9a37a49f7bd5cf655cc421de032",
+      "sha256": "6a23d55ad7ecf62b1ecebdb99157f1bc71937b28f588e2af2a66bd2f5ef68302",
+      "visual_sha256": "6afe01ca5a0ce6f4302852532704253103ba6c7aa5d410a38b4c93db27f8e761",
+      "dimensions": [
+        960,
+        540
+      ]
+    }
+  ],
+  "pdf_sha256": "dc2546b9b380e4228b0a3705bb69dd467c11db52289c016022095b23d1432b6f"
+}

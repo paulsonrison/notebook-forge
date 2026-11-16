@@ -67,6 +67,8 @@ def demo_job():
          'In this simplified cycle, liquid surface water evaporates into water vapour. Vapour cools and condenses into liquid droplets that form clouds. Water can return as precipitation and collect at the surface. Many real pathways, such as transpiration and groundwater flow, are omitted here.',
          animation('water-cycle', 'A simplified water cycle', 'triangular environmental reservoirs', 'water parcel traces evaporation condensation and rain', 'Moving through the three stages connects the changes of state.', 'A blue marker moves from surface water to cloud droplets to rain and collection along a triangular cycle.', 'Evaporation produces vapour; condensation makes liquid droplets; precipitation returns water to the surface.', water))]
     return {'title': 'Motion that teaches: three topics', 'theme': {'name': 'notebook', 'confirmed': True},
+            'media': {'confirmed': True, 'images': False, 'gifs': True},
+            'media': {'confirmed': True, 'images': False, 'gifs': True},
             'layout': {'mode': 'subtopic-pages', 'confirmed': True},
             'sources': [
                 {'kind': 'topic', 'value': 'Original demonstrations; source concepts verified 2026-11-16'},

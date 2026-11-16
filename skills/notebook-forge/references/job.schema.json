@@ -214,6 +214,26 @@
           }
         }
       }
+    },
+    "media": {
+      "type": "object",
+      "required": [
+        "confirmed",
+        "images",
+        "gifs"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "confirmed": {
+          "const": true
+        },
+        "images": {
+          "type": "boolean"
+        },
+        "gifs": {
+          "type": "boolean"
+        }
+      }
     }
   },
   "$defs": {
@@ -258,6 +278,9 @@
         },
         "animation": {
           "$ref": "#/$defs/animation"
+        },
+        "illustration": {
+          "$ref": "#/$defs/illustration"
         }
       },
       "allOf": [
@@ -284,6 +307,20 @@
           "if": {
             "required": [
               "animation"
+            ]
+          },
+          "then": {
+            "properties": {
+              "type": {
+                "const": "paragraph"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "illustration"
             ]
           },
           "then": {
@@ -488,6 +525,100 @@
           }
         }
       ]
+    },
+    "illustration": {
+      "type": "object",
+      "required": [
+        "id",
+        "topic",
+        "concept",
+        "layout",
+        "caption",
+        "alt",
+        "scene"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "topic": {
+          "$ref": "#/$defs/text"
+        },
+        "concept": {
+          "$ref": "#/$defs/text"
+        },
+        "layout": {
+          "$ref": "#/$defs/text"
+        },
+        "caption": {
+          "$ref": "#/$defs/text"
+        },
+        "alt": {
+          "$ref": "#/$defs/text"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "scene": {
+          "type": "object",
+          "required": [
+            "title",
+            "label",
+            "objects"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "$ref": "#/$defs/text"
+            },
+            "label": {
+              "$ref": "#/$defs/text"
+            },
+            "objects": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 80,
+              "items": {
+                "$ref": "#/$defs/primitive"
+              }
+            }
+          }
+        }
+      }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "pages": {
+            "contains": {
+              "properties": {
+                "blocks": {
+                  "contains": {
+                    "anyOf": [
+                      {
+                        "required": [
+                          "animation"
+                        ]
+                      },
+                      {
+                        "required": [
+                          "illustration"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "media"
+        ]
+      }
+    }
+  ]
 }

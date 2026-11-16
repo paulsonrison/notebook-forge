@@ -2,9 +2,11 @@
   "pass1": true,
   "pass2": true,
   "gifs": 3,
+  "images": 0,
   "review_fingerprints": {
-    "page-0-block-0": "7752d4abdbd9608b18cfe5302c086c5d289a4942451f1a6e56e90d9e0a0085e0",
-    "page-1-block-0": "0ae1874fb26e52bc2de7772659a027312f3da76dd544cc496c15b5c625950234",
-    "page-2-block-0": "dd4187240c0a382408e3d651b8e3855b6f868b340b77fe40ab95fcfd18aaac5f"
-  }
+    "page-0-block-0": "4b0ad522413fe3a0c08e8cb8ca78198613a7d13d1c8ff877648ff538921f5a1d",
+    "page-1-block-0": "43543e1abd9e4a0faf239a544a2f6d4292d4c0a7a4443df631deb587a6c033c5",
+    "page-2-block-0": "f03dc7821c7f97caa571c00b777bdd13f81efdb97b6d96af22d81c92bf9fff8e"
+  },
+  "image_review_fingerprints": {}
 }

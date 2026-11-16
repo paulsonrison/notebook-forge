@@ -13,6 +13,7 @@ sys.path.insert(0, str(ROOT / 'skills/notebook-forge/scripts'))
 
 def sample():
     data = json.loads((ROOT / 'examples/learning-notebook.json').read_text())
+    data['media'] = {'confirmed': True, 'images': False, 'gifs': True}
     data['pages'] = data['pages'][:1]
     data['topics'] = [{'id': 'test', 'title': 'Packet exchange'}]
     data['pages'][0].update(title='Packet exchange', covers=['test'])
@@ -133,7 +134,8 @@ class AnimationTests(unittest.TestCase):
         from pypdf import PdfReader
         self.build()
         text = '\n'.join(p.extract_text() for p in PdfReader(self.root / 'notebook.pdf').pages)
-        self.assertIn('The receiver gets', text)
+        self.assertNotIn('The receiver gets', text)  # GIFs belong to approved HTML, not PDF.
+        self.assertIn('The receiver gets', (self.root / 'notebook.html').read_text())
         self.job['pages'][0]['blocks'][0].pop('animation')
         self.build()
         self.assertEqual([], json.loads((self.root / 'manifest.json').read_text())['gifs'])

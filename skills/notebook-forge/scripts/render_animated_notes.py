@@ -1,4 +1,4 @@
-"""Build original GIFs, companion HTML and PDF stills from an authored JSON job."""
+"""Build approved topic images in PDFs/HTML and optional GIFs in HTML."""
 import argparse
 import json
 from pathlib import Path

@@ -1,7 +1,7 @@
 {
   "name": "notebook-forge",
-  "version": "1.0.0",
-  "description": "Create searchable study PDFs and section-specific animated notes with original local GIFs and two verification gates.",
+  "version": "1.1.0",
+  "description": "Create illustrated study PDFs with topic-specific teaching images, separate media permission and double verification; optional GIFs in HTML.",
   "author": {
     "name": "paulsonrison",
     "url": "https://github.com/paulsonrison"

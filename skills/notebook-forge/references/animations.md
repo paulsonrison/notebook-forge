@@ -1,5 +1,9 @@
 # Original animations and verification
 
+First obtain explicit `media.gifs: true` with confirmed media choices. Static
+images require separate approval; see [illustrations.md](illustrations.md).
+PDF embeds only approved static teaching images, never substituted GIF stills.
+
 ## Authoring contract
 
 Attach `animation` only to a `paragraph` block containing the exact core
@@ -106,5 +110,5 @@ actually perform the audit. Rebuild and re-review after changes. PDF QA covers
 all pages separately; passing the GIF gate does not replace PDF inspection.
 
 Deliver the HTML with adjacent assets and PDF, retaining the manifest and audit
-evidence. PDF stills never animate. Existing jobs without `animation` keep using
+evidence. GIFs stay in HTML; PDF uses separately approved topic images. Existing text-only jobs keep using
 `render_notebook.py job.json --output notebook.pdf` unchanged.

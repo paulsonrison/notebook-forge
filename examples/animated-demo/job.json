@@ -4,6 +4,11 @@
     "name": "notebook",
     "confirmed": true
   },
+  "media": {
+    "confirmed": true,
+    "images": false,
+    "gifs": true
+  },
   "layout": {
     "mode": "subtopic-pages",
     "confirmed": true

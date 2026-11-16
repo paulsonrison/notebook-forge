@@ -1,7 +1,7 @@
 {
-  "version": 1,
-  "job_sha256": "665ec2e905cde2188f0caa6da43f6eaefeea029e342a75932af090438cec676d",
-  "generator_sha256": "4f8633b04988968b48fecb4cb0007892eabcaa3c8fe9e44f3aea89f76af656c3",
+  "version": 2,
+  "job_sha256": "cb5a9cb15b71ff47539294bb098c7b95b061edbad27fd6aa981302b4bdd672b5",
+  "generator_sha256": "f08b4349bb7f009baf7bea0c8bfae2e5e93de2ad31b85cf43e989e6c032ab0db",
   "gifs": [
     {
       "section": "page-0-block-0",
@@ -91,5 +91,6 @@
       ]
     }
   ],
-  "pdf_sha256": "692a7a817c6d4d451ed26d6f533373c5c1759db66e96f6fdda98c1305b774d39"
+  "images": [],
+  "pdf_sha256": "fe9db787264e99f46674ece806967126f6beb7299bc64d84ffdf34957651be91"
 }

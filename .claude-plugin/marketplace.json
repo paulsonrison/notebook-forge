@@ -12,7 +12,7 @@
       "name": "notebook-forge",
       "source": "./",
       "description": "Searchable notebook PDFs with theme and page-depth choices.",
-      "version": "1.0.0"
+      "version": "1.1.0"
     }
   ]
 }

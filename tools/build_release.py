@@ -10,7 +10,7 @@ ALLOW = [
     "README.md", "LICENSE", "tests", "tools", ".github",
     ".gitignore", ".gitattributes", "docs/design.md", "docs/implementation-plan.md",
     "docs/behaviour-tests.md",
-    "CHANGELOG.md", "docs/releases", "docs/superpowers/plans",
+    "CHANGELOG.md", "docs/releases", "docs/superpowers/plans", "docs/image-upgrade-plan.md",
 ]
 
 

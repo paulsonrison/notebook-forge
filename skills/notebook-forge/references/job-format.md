@@ -4,6 +4,12 @@ The agent writes a job after gathering the source/topic and user choices.
 The renderer does not call an AI model, fetch URLs or read external documents:
 agents extract, research and author the content before rendering.
 
+For new notebooks, record explicit media choices as
+`media: {"confirmed": true, "images": true|false, "gifs": true|false}`.
+See [the image contract](illustrations.md): approved images require coverage of
+every topic/subtopic. GIFs have separate permission and play in HTML only.
+Historical jobs without media assets remain supported without this field.
+
 Required root fields:
 
 - `title`: nonempty document title.
@@ -54,7 +60,8 @@ Each block has `type` and a nonempty `label`.
 Text is escaped before PDF rendering; HTML-like source is never executed.
 Explanation paragraphs may also carry an optional `animation` object; read
 [the animation contract](animations.md). Use the animated bundle CLI for these
-jobs; the PDF receives a still and caption, and companion HTML plays the GIF.
+jobs; companion HTML plays approved GIFs. Add a separately approved `illustration`
+for static PDF/HTML teaching images. The PDF does not receive GIF stills.
 Legacy jobs and the existing PDF-only CLI remain supported.
 Split long code lines yourself. Do not add invisible line breaks or smaller type
 to force code into the width. Long blocks may split vertically across pages.

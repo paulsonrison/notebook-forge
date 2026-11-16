@@ -1,0 +1,600 @@
+{
+  "title": "Visual study notebook: three illustrated topics",
+  "theme": {
+    "name": "notebook",
+    "confirmed": true
+  },
+  "media": {
+    "confirmed": true,
+    "images": true,
+    "gifs": false
+  },
+  "layout": {
+    "mode": "subtopic-pages",
+    "confirmed": true
+  },
+  "sources": [
+    {
+      "kind": "topic",
+      "value": "Original demonstrations; source concepts verified 2026-11-16"
+    },
+    {
+      "kind": "url",
+      "title": "IETF RFC 9293: TCP connection establishment",
+      "value": "https://www.rfc-editor.org/rfc/rfc9293.html#section-3.5"
+    },
+    {
+      "kind": "url",
+      "title": "Python documentation: array bisection",
+      "value": "https://docs.python.org/3/library/bisect.html"
+    },
+    {
+      "kind": "url",
+      "title": "USGS Water Science School: water cycle",
+      "value": "https://www.usgs.gov/water-science-school/water-cycle"
+    }
+  ],
+  "topics": [
+    {
+      "id": "tcp",
+      "title": "TCP three-way handshake"
+    },
+    {
+      "id": "search",
+      "title": "Binary search"
+    },
+    {
+      "id": "water",
+      "title": "The water cycle"
+    }
+  ],
+  "pages": [
+    {
+      "title": "TCP three-way handshake",
+      "covers": [
+        "tcp"
+      ],
+      "blocks": [
+        {
+          "type": "paragraph",
+          "label": "Understand",
+          "text": "A client sends SYN. The server replies with SYN and ACK, acknowledging the client sequence plus one. The client acknowledges the server SYN. This exchange establishes a TCP connection; it does not encrypt it.",
+          "illustration": {
+            "id": "tcp-handshake-diagram",
+            "concept": "TCP three-way handshake",
+            "layout": "two vertical endpoint lifelines",
+            "caption": "Each endpoint sends a SYN and receives an acknowledgement before the connection is established.",
+            "alt": "Three messages appear between client and server: SYN, SYN plus ACK, then ACK.",
+            "topic": "tcp",
+            "scene": {
+              "title": "TCP three-way handshake",
+              "label": "Read the complete sequence in one diagram",
+              "objects": [
+                {
+                  "type": "text",
+                  "xy": [
+                    120,
+                    155
+                  ],
+                  "text": "CLIENT",
+                  "size": 26
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    700,
+                    155
+                  ],
+                  "text": "SERVER",
+                  "size": 26
+                },
+                {
+                  "type": "line",
+                  "xy": [
+                    190,
+                    205,
+                    190,
+                    490
+                  ]
+                },
+                {
+                  "type": "line",
+                  "xy": [
+                    770,
+                    205,
+                    770,
+                    490
+                  ]
+                },
+                {
+                  "type": "arrow",
+                  "xy": [
+                    220,
+                    250,
+                    710,
+                    250
+                  ]
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    270,
+                    208
+                  ],
+                  "text": "SYN: client sequence 100",
+                  "size": 24
+                },
+                {
+                  "type": "arrow",
+                  "xy": [
+                    710,
+                    340,
+                    220,
+                    340
+                  ]
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    270,
+                    298
+                  ],
+                  "text": "SYN + ACK: acknowledges 101",
+                  "size": 24
+                },
+                {
+                  "type": "arrow",
+                  "xy": [
+                    220,
+                    430,
+                    710,
+                    430
+                  ]
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    270,
+                    388
+                  ],
+                  "text": "ACK: acknowledges server SYN",
+                  "size": 24
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "practice",
+          "label": "Recall",
+          "text": "Which message acknowledges the server SYN? The final client ACK."
+        }
+      ]
+    },
+    {
+      "title": "Binary search",
+      "covers": [
+        "search"
+      ],
+      "blocks": [
+        {
+          "type": "paragraph",
+          "label": "Understand",
+          "text": "Binary search requires sorted data. For target 23 in [2, 5, 8, 12, 16, 23, 38], the first midpoint is 12. Discard it and all smaller values. The next midpoint is 23 at index 5, so the search succeeds.",
+          "illustration": {
+            "id": "binary-search-diagram",
+            "concept": "Binary search for 23",
+            "layout": "annotated array with comparison and match pointers",
+            "caption": "Compare midpoint 12, discard the left four values, then find 23 at index 5.",
+            "alt": "A sorted array shows 12 as the first comparison and 23 as the match; indices 0 to 3 are discarded.",
+            "topic": "search",
+            "scene": {
+              "title": "Binary search for 23",
+              "label": "Two comparisons: 12 is too small; 23 matches",
+              "objects": [
+                {
+                  "type": "text",
+                  "xy": [
+                    30,
+                    150
+                  ],
+                  "text": "Target: 23. Grey cells are discarded after comparing 12.",
+                  "size": 24
+                },
+                {
+                  "type": "rect",
+                  "box": [
+                    40,
+                    260,
+                    140,
+                    345
+                  ],
+                  "fill": "#E5E7EB"
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    70,
+                    282
+                  ],
+                  "text": "2",
+                  "size": 30
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    70,
+                    365
+                  ],
+                  "text": "0",
+                  "size": 24
+                },
+                {
+                  "type": "rect",
+                  "box": [
+                    165,
+                    260,
+                    265,
+                    345
+                  ],
+                  "fill": "#E5E7EB"
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    195,
+                    282
+                  ],
+                  "text": "5",
+                  "size": 30
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    195,
+                    365
+                  ],
+                  "text": "1",
+                  "size": 24
+                },
+                {
+                  "type": "rect",
+                  "box": [
+                    290,
+                    260,
+                    390,
+                    345
+                  ],
+                  "fill": "#E5E7EB"
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    320,
+                    282
+                  ],
+                  "text": "8",
+                  "size": 30
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    320,
+                    365
+                  ],
+                  "text": "2",
+                  "size": 24
+                },
+                {
+                  "type": "rect",
+                  "box": [
+                    415,
+                    260,
+                    515,
+                    345
+                  ],
+                  "fill": "#E5E7EB"
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    445,
+                    282
+                  ],
+                  "text": "12",
+                  "size": 30
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    445,
+                    365
+                  ],
+                  "text": "3",
+                  "size": 24
+                },
+                {
+                  "type": "rect",
+                  "box": [
+                    540,
+                    260,
+                    640,
+                    345
+                  ],
+                  "fill": "#C9F5DE"
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    570,
+                    282
+                  ],
+                  "text": "16",
+                  "size": 30
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    570,
+                    365
+                  ],
+                  "text": "4",
+                  "size": 24
+                },
+                {
+                  "type": "rect",
+                  "box": [
+                    665,
+                    260,
+                    765,
+                    345
+                  ],
+                  "fill": "#FFF068"
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    695,
+                    282
+                  ],
+                  "text": "23",
+                  "size": 30
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    695,
+                    365
+                  ],
+                  "text": "5",
+                  "size": 24
+                },
+                {
+                  "type": "rect",
+                  "box": [
+                    790,
+                    260,
+                    890,
+                    345
+                  ],
+                  "fill": "#C9F5DE"
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    820,
+                    282
+                  ],
+                  "text": "38",
+                  "size": 30
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    820,
+                    365
+                  ],
+                  "text": "6",
+                  "size": 24
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    250,
+                    190
+                  ],
+                  "text": "1: compare 12",
+                  "size": 24
+                },
+                {
+                  "type": "arrow",
+                  "xy": [
+                    450,
+                    224,
+                    465,
+                    254
+                  ]
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    640,
+                    430
+                  ],
+                  "text": "2: find 23 at index 5",
+                  "size": 24
+                },
+                {
+                  "type": "arrow",
+                  "xy": [
+                    730,
+                    420,
+                    715,
+                    350
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "practice",
+          "label": "Recall",
+          "text": "Why must the values be sorted? A midpoint comparison must identify which half can contain the target."
+        }
+      ]
+    },
+    {
+      "title": "The water cycle",
+      "covers": [
+        "water"
+      ],
+      "blocks": [
+        {
+          "type": "paragraph",
+          "label": "Understand",
+          "text": "In this simplified cycle, liquid surface water evaporates into water vapour. Vapour cools and condenses into liquid droplets that form clouds. Water can return as precipitation and collect at the surface. Many real pathways, such as transpiration and groundwater flow, are omitted here.",
+          "illustration": {
+            "id": "water-cycle-diagram",
+            "concept": "A simplified water cycle",
+            "layout": "labelled three-reservoir cycle with state-change annotations",
+            "caption": "Liquid evaporates into vapour, condensation forms cloud droplets, and precipitation returns water to the surface.",
+            "alt": "Arrows connect surface water to cloud droplets through evaporation and condensation, then to rain and collection.",
+            "topic": "water",
+            "scene": {
+              "title": "A simplified water cycle",
+              "label": "A simplified cycle: surface, atmosphere, surface",
+              "objects": [
+                {
+                  "type": "ellipse",
+                  "box": [
+                    390,
+                    155,
+                    600,
+                    225
+                  ],
+                  "fill": "#C9F5DE"
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    400,
+                    170
+                  ],
+                  "text": "Cloud droplets",
+                  "size": 24
+                },
+                {
+                  "type": "rect",
+                  "box": [
+                    25,
+                    420,
+                    260,
+                    490
+                  ],
+                  "fill": "#C9F5DE"
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    40,
+                    435
+                  ],
+                  "text": "Surface water",
+                  "size": 26
+                },
+                {
+                  "type": "rect",
+                  "box": [
+                    680,
+                    420,
+                    930,
+                    490
+                  ],
+                  "fill": "#C9F5DE"
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    690,
+                    435
+                  ],
+                  "text": "Rain / collection",
+                  "size": 24
+                },
+                {
+                  "type": "arrow",
+                  "xy": [
+                    190,
+                    410,
+                    410,
+                    240
+                  ]
+                },
+                {
+                  "type": "arrow",
+                  "xy": [
+                    610,
+                    240,
+                    780,
+                    410
+                  ]
+                },
+                {
+                  "type": "arrow",
+                  "xy": [
+                    670,
+                    480,
+                    280,
+                    480
+                  ]
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    35,
+                    265
+                  ],
+                  "text": "Evaporation",
+                  "size": 24
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    80,
+                    200
+                  ],
+                  "text": "Vapour condenses",
+                  "size": 24
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    700,
+                    245
+                  ],
+                  "text": "Precipitation",
+                  "size": 24
+                },
+                {
+                  "type": "text",
+                  "xy": [
+                    360,
+                    490
+                  ],
+                  "text": "Collection",
+                  "size": 24
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "practice",
+          "label": "Recall",
+          "text": "Does evaporation produce cloud droplets directly? No. Condensation of vapour forms liquid droplets."
+        }
+      ]
+    }
+  ]
+}

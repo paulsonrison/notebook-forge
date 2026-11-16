@@ -17,7 +17,7 @@ def check_package():
     ]
     data = [json.loads(path.read_text(encoding="utf-8")) for path in manifests]
     identity = {(d["name"], d["version"]) for d in data}
-    assert identity == {("notebook-forge", "1.0.0")}, identity
+    assert identity == {("notebook-forge", "1.1.0")}, identity
     assert {p.name for p in (ROOT / "skills").iterdir() if p.is_dir()} == {"notebook-forge"}
     skill = ROOT / "skills/notebook-forge"
     content = (skill / "SKILL.md").read_text(encoding="utf-8")
@@ -52,6 +52,8 @@ def check_package():
     jsonschema.validate(example, schema)
     animated = json.loads((ROOT / "examples/animated-notebook.json").read_text(encoding="utf-8"))
     jsonschema.validate(animated, schema)
+    illustrated = json.loads((ROOT / "examples/illustrated-notebook.json").read_text(encoding="utf-8"))
+    jsonschema.validate(illustrated, schema)
     assert "Pillow" in (skill / "requirements.txt").read_text()
     for key in ("icon_small", "icon_large"):
         assert (skill / ui["interface"][key]).is_file()

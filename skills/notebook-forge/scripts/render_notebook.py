@@ -17,7 +17,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
     BaseDocTemplate, Flowable, Frame, PageBreak, PageTemplate,
-    Paragraph, Spacer, XPreformatted, Image,
+    Paragraph, Spacer, XPreformatted, Image, KeepTogether,
 )
 from reportlab.platypus.tableofcontents import TableOfContents
 
@@ -143,6 +143,8 @@ def validate_job(job):
     if any('animation' in block for page in job['pages'] for block in page['blocks']):
         from animations import validate_animations
         validate_animations(job)
+    from illustrations import validate_media
+    validate_media(job)
     return job
 
 
@@ -349,16 +351,19 @@ def make_story(job, palette, plain, asset_root=None):
                         palette["mint"] if kind == "callout" else palette["practice"])
                     style.spaceBefore, style.spaceAfter = 3, 17
                 story.append(Paragraph(literal(block["text"]), style))
-            if 'animation' in block:
+            if 'illustration' in block:
                 if asset_root is None:
-                    raise ValueError('Use render_animated_notes.py for jobs with animations')
+                    raise ValueError('Use render_animated_notes.py for jobs with teaching images')
                 from animations import local_path
-                animation = block['animation']
-                path = local_path(asset_root, f'assets/gifs/{animation["id"]}.png')
-                story.append(Image(str(path), width=CONTENT_WIDTH, height=CONTENT_WIDTH*540/960))
-                story.append(Paragraph(literal(animation['caption']), small))
-                story.append(Paragraph(literal('Alt text: '+animation['alt']), small))
-                story.append(Paragraph('Static final frame. Play the animation in the accompanying notebook.html.', small))
+                animation = block['illustration']
+                path = local_path(asset_root, f'assets/images/{animation["id"]}.png')
+                figure = [Image(str(path), width=CONTENT_WIDTH, height=CONTENT_WIDTH*540/960),
+                          Paragraph(literal(animation['caption']), small),
+                          Paragraph(literal('Alt text: '+animation['alt']), small)]
+                total = sum(item.wrap(CONTENT_WIDTH, HEIGHT)[1] + item.getSpaceBefore() + item.getSpaceAfter() for item in figure)
+                if total > HEIGHT-TOP-BOTTOM:
+                    raise ValueError('Shorten image caption/alt so the teaching figure fits one page')
+                story.append(KeepTogether(figure))
     url_sources = [s for s in job["sources"] if s["kind"] == "url"]
     if url_sources:
         story += [PageBreak(), title("Sources", "sources")]
@@ -382,9 +387,10 @@ def preflight(job):
         check_glyphs(page["title"])
         for block in page["blocks"]:
             check_glyphs(block["label"])
-            if 'animation' in block:
-                check_glyphs(block['animation']['caption'])
-                check_glyphs(block['animation']['alt'])
+            for media_kind in ('animation', 'illustration'):
+                if media_kind in block:
+                    check_glyphs(block[media_kind]['caption'])
+                    check_glyphs(block[media_kind]['alt'])
             if block["type"] == "code":
                 check_glyphs(block["text"], "Courier")
                 for number, line in enumerate(block["text"].splitlines(), 1):

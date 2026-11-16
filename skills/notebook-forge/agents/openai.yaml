@@ -1,7 +1,7 @@
 interface:
   display_name: "Notebook Forge"
-  short_description: "Study PDFs and original topic-specific animated notes"
-  default_prompt: "Use $notebook-forge to turn my source material into a study notebook with original GIFs where motion aids learning; ask me to confirm the theme and page structure first, then pass both verification gates."
+  short_description: "Study PDFs with original topic-specific teaching images"
+  default_prompt: "Use $notebook-forge to create illustrated study notes. Confirm theme, page structure, image permission and GIF permission separately. When images are approved, illustrate every topic and subtopic, then pass technical and topic/readability verification."
   icon_small: "./assets/icon.svg"
   icon_large: "./assets/icon.svg"
   brand_color: "#193963"

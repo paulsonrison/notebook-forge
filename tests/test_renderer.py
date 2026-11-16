@@ -5,12 +5,16 @@ import re
 from pathlib import Path
 import tempfile
 import unittest
+import sys
+import sys
 
 from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[1]
 (ROOT / '.test-tmp').mkdir(exist_ok=True)
 SCRIPT = ROOT / "skills/notebook-forge/scripts/render_notebook.py"
+sys.path.insert(0, str(SCRIPT.parent))
+sys.path.insert(0, str(SCRIPT.parent))
 
 
 def job(mode="subtopic-pages"):
